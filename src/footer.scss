@@ -1,0 +1,146 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+  
+@mixin centriraj {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer {
+    height: 200px;
+    width: 100vw;
+    background-color: #bbb;
+    position: relative;
+    /*bottom: 0;
+    left: 0;*/
+  
+    @media screen and (max-width: 860px) {
+      & {
+        /*background-color: yellow;*/
+        height: 400px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  
+    .podaci {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      /*background-color: yellow;*/
+      position: absolute;
+      top: 20px;
+      left: 30px;
+      max-width: 200px;
+    }
+  
+    .copyright {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 16px;
+      /*background-color: red;*/
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      max-width: 200px;
+  
+      .design {
+        font-size: 14px;
+        color: #777;
+      }
+    }
+  
+    .linkovi {
+      height: 150px;
+      width: 300px;
+      /*background-color: pink;*/
+      position: absolute;
+      top: 20px;
+      left: calc(50vw - 150px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 24px;
+  
+      .objasnjenje {
+        background-color: white;
+        width: 120px;
+        height: 40px;
+        font-size: 14px;
+        border-radius: 4px;
+        pointer-events: none;
+  
+        @include centriraj;
+      }
+  
+      .p-linkovi {
+        display: inline-block;
+        /*background-color: blue;*/
+        margin: 0px auto 0px auto;
+  
+      }
+  
+      .ikonice {
+        height: 100px;
+        width: 100%;
+        margin-top: 0px;
+        /*background-color: grey;*/
+        display: flex;
+        justify-content: center;
+  
+        .facebook-ikona, .twiter-ikona, .instangram-ikona {
+          height: 50px;
+          width: 50px;
+          margin: 20px 15px 0px 0px;
+          background-color: #2991e6;
+          border-radius: 50%;
+          @include centriraj;
+          transition: background-color 1s;
+  
+          &:hover {
+            cursor: pointer;
+            background-color: #03589e;
+          }
+  
+          &:hover .ikona {
+            color: #bbb;
+          }
+  
+          .ikona {
+            height: 50%;
+            width: 50%;
+            color: white;
+            transition: color 1s;
+          }
+        }
+  
+        .instangram-ikona {
+          background-color: #eb0e66;
+        }
+      }
+    }
+  
+    @media screen and (max-width: 860px) {
+      .podaci, .copyright, .linkovi {
+          position: static;
+          margin-bottom: 20px;
+      }
+  
+      .linkovi {
+        
+        margin-bottom: -10px;
+  
+        &:hover .objasnjenje {
+          margin-top: -40px;
+        }
+      }
+    }
+  }

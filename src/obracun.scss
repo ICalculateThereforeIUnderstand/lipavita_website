@@ -1,0 +1,92 @@
+
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+  
+@mixin centriraj {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+$podloga: #dcf9fa;
+
+.obracun {
+  min-height: 100vh;
+  width: 100vw;
+  background-color: $podloga;
+  border: 1px solid $podloga;
+  box-sizing: border-box;
+
+  .link {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .buffer {
+    height: 80px;
+    width: 100vw;
+  }
+
+  .p-el {
+    font-size: 20px;
+  }
+
+  .p-el1 {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .naslov {
+    text-align: center;
+  }
+
+  .tablica {
+    border: 3px solid black;
+    margin: 50px auto 50px auto;
+
+    th, td {
+      border: 1px solid black;
+      text-align: center;
+    }
+
+    .polje1 {
+      width: 80px;
+    }
+
+    .polje2 {
+      width: 300px;
+    }
+
+    @media screen and (max-width: 700px) {
+        .polje1 {
+          width: 50px;
+        }
+
+        .polje2 {
+          width: 200px;
+        }
+    }
+
+    @media screen and (max-width: 500px) {
+        th, td {
+          font-size: 13px;
+        }
+
+        .polje1 {
+          width: 40px;
+        }
+
+        .polje2 {
+          width: 170px;
+        }
+    }
+  }
+}

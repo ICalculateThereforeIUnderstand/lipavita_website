@@ -1,0 +1,106 @@
+
+$podloga: #dcf9fa;
+$bojaSlova: #999;
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+  
+@mixin centriraj {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.not-found {
+    height: 100vh;
+    width: 100vw;
+    background-color: $podloga;
+    border: 1px solid $podloga;
+    box-sizing: border-box;
+    @include centriraj;
+    flex-direction: column;
+
+    .p-el1 {
+        font-size: 55px;
+        margin-bottom: 30px;
+        margin-left: 30px;
+        margin-right: 30px;
+        color: $bojaSlova; 
+        font-weight: 600;
+    }
+
+    .p-el2, .p-el3 {
+        font-size: 25px;
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+}
+
+.loading {
+    height: 100vh;
+    width: 100vw;
+    background-color: $podloga;
+    border: 1px solid $podloga;
+    box-sizing: border-box;
+    @include centriraj;
+
+    .p-el {
+        font-size: 50px;
+        color: $bojaSlova;
+        /*background-color: red;*/
+
+        .p-span {
+            background-color: yellow;
+            display: inline-block;
+            position: relative;
+            width: 10px;
+            margin-left: 10px;
+            margin-right: 10px;
+
+            .el {
+                height: 5px;
+                width: 5px;
+                background-color: $bojaSlova;
+                border-radius: 50%;
+                position: absolute;
+                top: -5px;
+                transition: background-color 0.4s;
+            }
+
+            .el1 {
+                left: 4px;
+            }
+
+            .el2 {
+                left: 14px;
+            }
+
+            .el3 {
+                left: 24px;
+            }
+
+            .el4 {
+                left: 34px;
+            }
+
+            .el5 {
+                left: 44px;
+            }
+
+
+
+            .p-div {
+                background-color: red;
+                height: 100%;
+                width: 100%;
+            }
+        }
+    }
+}

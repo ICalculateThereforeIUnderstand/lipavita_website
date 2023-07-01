@@ -1,0 +1,990 @@
+
+$podloga: #dcf9fa;
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin centriraj {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.kartica {
+  height: 100px;
+  width: 280px;
+  background-color: #eee;
+  border-radius: 7px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 20px;
+  user-select: none;
+  transition: background-color 0.7s;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #ccc;
+
+    .kartica-el3 {
+      background-color: #ccc;
+    }
+  }
+
+  .kartica-el1 {
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    @include centriraj;
+  
+    .ikona {
+      height: 50%;
+      width: 50%;
+      color: #68ede4;
+    }
+  }
+
+  .kartica-el2 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100px;
+    width: 150px;
+    display: flex;
+    align-items: center;
+
+    .nas {
+      font-size: 18px;
+      color: black;
+    }
+  }
+
+  .kartica-el3 {
+    position: absolute;
+    top: 100px;
+    left: 0;
+    background-color: #eee;
+    width: 100%;
+    height: 400px;
+    @include centriraj;
+    transition: background-color 0.7s;
+  }
+}
+
+.glavna {
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: grey;
+  border: 1px solid grey;
+  position: relative;
+  display: none; /*privremeno ucitavanja stranice*/
+
+  .main {
+    background-color: $podloga;
+    box-sizing: border-box;
+    border: 1px solid $podloga;
+    .naslov {
+      font-size: 36px;
+      font-weight: 600;
+      color: #444;
+      /*background-color: red;*/
+      text-align: center;
+    }
+
+    .naslov1 {
+      font-size: 36px;
+      font-weight: 600;
+      color: #444;
+      /*background-color: red;*/
+      text-align: center;
+    }
+
+    .naslov2 {
+      margin: 80px 0px 20px 0px;
+    }
+
+    .slika2 {
+      width: 60%;
+      height: 300px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      background-image: url("../public/slike/uber.png");
+      margin: 20px auto 0px auto;
+
+      @media screen and (min-width: 1250px) {
+        & {
+            height: 400px;
+            width: 50%;
+        }
+      }
+
+      @media screen and (max-width: 850px) {
+        & {
+            width: 70%;
+        }
+      }
+
+      @media screen and (max-width: 620px) {
+        & {
+            height: 250px;
+        }
+      }
+
+      @media screen and (max-width: 500px) {
+        & {
+            height: 200px;
+        }
+      }
+
+      .plast {
+        background-color: rgba(0,0,0,0);
+        transition: background-color 0.7s;
+        height: 100%;
+        width: 100%;
+        @include centriraj;
+
+        .gumb {
+          width: 200px;
+          height: 70px;
+          border: 2px solid white;
+          border-radius: 5px;
+          color: white;
+          background-color: rgba(0,0,0,0);
+          font-size: 20px;
+          @include centriraj;
+          user-select: none;
+          transition: all 0.7s;
+
+          &:hover {
+            color: black;
+            background-color: rgba(255,255,255,1);
+            border: 2px solid rgba(255,255,255,1);
+            cursor: pointer;
+          }
+
+          .gumb-p {
+            text-decoration: none;
+          }
+        }
+
+        &:hover {
+          background-color: rgba(0,0,0,0.4);
+        }
+      }
+    }
+
+    .partneri {
+      width: 100%;
+      height: 150px;
+      background-color: white;
+      @include centriraj;
+
+      @media screen and (max-width: 950px) {
+        & {
+            height: 100px;
+        }
+      }
+
+      @media screen and (max-width: 650px) {
+        & {
+            height: 75px;
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        & {
+            height: 50px;
+        }
+      }
+
+      .logo-img {
+        height: 100%;
+      }
+    }
+
+    .el1 {
+      width: 100%;
+      min-height: 600px;
+      background-color: $podloga;
+      /*@include centriraj;*/
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+
+      .lijeva-ploca {
+        min-height: 400px;
+        width: 50%;
+        /*background-color: red;*/
+
+        @media screen and (max-width: 730px) {
+          & {
+              width: 70%;
+          }
+        }
+
+        .slika1 {
+          width: 100%;
+          border-radius: 10% 20% 20% 0px;
+          margin-top: 50px;
+        }
+        
+        .slika2 {
+          width: 100%;
+          height: auto;
+          border-radius: 10% 20% 20% 0px;
+          margin-top: 20px;
+  
+        }
+
+        .oglas-elektricni-bicikli {
+          height: 100px;
+          width: 90%;
+          @include centriraj;
+          background-color: #092c80;
+          color: white;
+          font-size: 30px;
+          font-weight: 600;
+          margin: 20px auto 0px auto;
+          border-radius: 15px;
+
+          @media screen and (max-width: 700px) {
+            & {
+                font-size: 25px;
+            }
+          }
+
+          @media screen and (max-width: 600px) {
+            & {
+                font-size: 23px;
+            }
+          }
+
+          .oglas-tekst {
+            margin: 10px;
+            text-align: center;
+          }
+        }
+      }
+
+      .ploca {
+        min-height: 600px;
+        width: 40%;
+        background-color: #dcf9fa;
+        flex-direction: column;
+        @include centriraj;
+
+        .lista1 {
+          font-size: 15px;
+          margin: 0px 5px 0px 5px;
+        }
+
+        .kartica-tekst {
+          margin: 10px;
+          font-size: 15px;
+        }
+      }
+
+      @media screen and (max-width: 730px) {
+        & {
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+
+            .lijeva-ploca .slika2 {
+              display: none;
+            }
+
+            .ploca {
+              margin-top: 30px;
+            }
+        }
+      }
+    }
+  }
+
+  .slika {
+    width: 100%;
+    height: 600px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    transition: opacity 2s;
+
+    @media screen and (min-width: 1100px) {
+      & {
+          height: 750px;
+      }
+    }
+
+    @media screen and (max-width: 650px) {
+      & {
+          height: 450px;
+      }
+    }
+  }
+
+  #slika1 {
+    background-image: url("../public/slike/uber.png");
+    opacity: 1;
+  }
+
+  #slika2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url("../public/slike/bolt.png");
+    opacity: 0;
+  }
+
+  #slika3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url("../public/slike/dostavljaci.jpg");
+    opacity: 0;
+  }
+
+  .natpis {
+    height: 600px;
+    width: 65%;
+    position: absolute;
+    top: -20vh;
+    left: 17.5%;
+    /*background-color: rgba(246, 247, 178, 0.4);*/
+    @include centriraj;
+    flex-direction: column;
+    transition: top 2s;
+
+    @media screen and (min-width: 1100px) {
+      & {
+          height: 750px;
+      }
+    }
+
+    @media screen and (max-width: 650px) {
+      & {
+          height: 450px;
+          width: 90%;
+          left: 5%;
+      }
+    }
+
+    .pomak {
+      height: 0;
+      width: 0;
+      @media screen and (max-width: 650px) {
+        & {
+            height: 100px;
+            width: 100%;            
+        }
+      }
+    }
+
+    .natpis-el {
+      font-size: 30px;
+      font-weight: 600;
+      font-family: sans-serif;
+      color: white;
+      /*display: inline-block;*/
+      /*background-color: blue;*/
+      @media screen and (max-width: 650px) {
+        & {
+            font-size: 27px;         
+        }
+      }
+
+    }
+  }
+}
+
+
+
+.onama {
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: grey;
+  border: 1px solid grey;
+  position: relative;
+}
+
+.stop-scrolling {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.kontakt {
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: $podloga;
+  border: 1px solid $podloga;
+  position: relative;
+  display: none; /*privremeno ucitavanja stranice*/
+
+  .holder {
+    position: relative;
+    top: 0;
+    left: 0;
+    min-height: 100vh;
+    width: 100%;
+  }
+
+  .plast {
+    height: 100vh;
+    width: 100vw;
+    z-index: 5;
+    background-color: rgba(0,0,0,0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .modal {
+      height: 400px;
+      width: 600px;
+      max-width: 90vw;
+      background-color: #aaa;
+      position: relative;
+      @include centriraj;
+
+      @media screen and (max-width: 450px) {
+            
+        & {
+          height: 550px;
+        }
+      }
+
+      .mapa {
+        height: 98%;
+        width: 98%;
+      }
+
+      .krizic {
+        height: 30px;
+        width: 30px;
+        /*background-color: black;*/
+        position: absolute;
+        right: 25px;
+        top: 25px;
+        transform: rotate(45deg);
+        z-index: 10;
+        
+        .el1 {
+          position: absolute;
+          height: 22%;
+          width: 100%;
+          top: 39%;
+          left: 0%;
+          background-color: black;
+        }
+    
+        .el2 {
+          position: absolute;
+          height: 100%;
+          width: 22%;
+          top: 0%;
+          left: 39%;
+          background-color: black;
+        }
+    
+        &:hover {
+          cursor: pointer;
+        }
+    
+        &:hover .el1, &:hover .el2 {
+          background-color: #555;
+        }
+      }
+    }
+  }
+
+  .tijelo {
+    width: 100vw;
+    min-height: 50vh;
+    background-color: $podloga;
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    /*border: 1px solid grey;*/
+    margin-bottom: 50px;
+
+    .lijeva {
+      width: 40vw;
+      height: 600px;
+      /*background-color: #e7b4fa;*/
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-direction: column;
+
+      .hove {
+        transition: background-color 0.7s;
+        &:hover {
+          cursor: pointer;
+          background-color: #aaa;
+
+          .ikona {
+            background-color: #439993;
+          }
+        }
+      }
+
+      .element {
+        width: 90%;
+        height: 25%;
+        background-color: #ccc;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        border-radius: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+
+        .sadrzaj {
+          height: 100%;
+          width: calc(100% - 150px);
+          /*background-color: red;*/
+
+          .naslov {
+            font-size: 22px;
+            font-weight: 600;
+            
+          }
+
+          .tekst {
+            font-size: 17px;
+            
+          }
+
+          .email {
+            font-size: 17px;
+            text-decoration: none;
+          }
+
+          .upozorenje {
+            font-size: 10px;
+          }
+
+          @media screen and (max-width: 450px) {
+            
+            .upozorenje {
+              margin: -10px 0px 0px -20px;
+            }
+          }
+        }
+
+        .ikona {
+          height: 100px;
+          width: 100px;
+          background-color: #68ede4;
+          transition: background-color 0.7s;
+          border-radius: 7px;
+          
+          @include centriraj;
+
+          .ikona-el {
+            height: 70%;
+            width: 70%;
+          }
+
+          .ikona-el1 {
+            height: 60%;
+            width: 60%;
+          }
+
+          .ikona-el2 {
+            height: 55%;
+            width: 55%;
+          }
+        }
+      }
+    }
+
+    .desna {
+      width: 40vw;
+      height: 600px;
+      /*background-color: #b6e9f2;*/
+      @include centriraj;
+      flex-direction: column;
+
+      .forma-naslov {
+        font-size: 23px;
+      }
+
+      .div-forma {
+        height: 90%;
+        width: 90%;
+        /*background-color: yellow;*/
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .forma-el {
+          /*background-color: red;*/
+          width: 80%;
+
+          .forma-input1 {
+            font-size: 18px;
+            width: 100%;
+            margin-bottom: 10px;
+          }
+
+          .forma-button {
+            font-size: 18px;
+            width: 100%;
+            height: 50px;
+            @include centriraj;
+            border-radius: 8px;
+            transition: background-color 0.7s;
+
+            &:hover {
+              background-color: #ccc;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: 825px) {
+      .lijeva {
+        width: 60vw;
+        height: 500px;
+        margin: 0px auto 0px auto;
+      }
+
+      .desna {
+        width: 80vw;
+        height: 500px;
+        margin: 0px auto 0px auto;
+
+      }
+
+      & {
+        /*min-height: 1200px;*/
+        display: block;
+      }
+    }
+
+    @media screen and (max-width: 570px) {
+      .lijeva {
+        .element {
+          .ikona {
+            height: 65px;
+            width: 65px;
+          }
+          .sadrzaj {
+            width: calc(100% - 100px);
+
+            .naslov {
+              font-size: 20px;
+            }
+
+            .tekst {
+              font-size: 15px;
+            }
+
+            .email {
+              font-size: 12px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .slika {
+    width: 100%;
+    height: 600px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    /*transition: opacity 2s;*/
+    background-image: url("../public/slike/contact.jpg");
+
+    @media screen and (min-width: 1100px) {
+      & {
+          height: 750px;
+      }
+    }
+
+    @media screen and (max-width: 650px) {
+      & {
+          height: 450px;
+      }
+    }
+  }
+
+}
+
+.rotirajuci {
+  height: 60px;
+  width: 200px;
+  background-color: rgba(0,0,0,0.1);
+  border-radius: 10px;;
+  /*margin: 10px;*/
+  /*display: inline-block;*/
+  /*vertical-align: middle;*/
+  position: relative;
+  overflow: hidden;
+
+  .element {
+    height: 100%;
+    width: 100%;
+    @include centriraj;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+    position: absolute;
+    background-color: rgba(0,0,0,0.1);
+    color: white;
+    top: 0;
+    left: 0;
+    /*transition: opacity 1s, transform 1s;*/
+    transition: opacity 0.5s 0.8s, transform 1s;
+  }
+
+  @media screen and (max-width: 650px) {
+    & {
+        font-size: 27px;         
+        height: 54px;
+        width: 180px;
+    }
+
+    & .element {
+      font-size: 27px;
+      font-weight: 600;
+    }
+  }
+
+  .trenutni {
+    opacity: 1;
+    transform: translate(0%, 0%);
+    z-index: 2;
+  }
+  .sljedeci {
+    opacity: 1;
+    transform: translate(100%, 0%);
+  }
+  .prethodni {
+    opacity: 0;
+    transform: translate(-100%, 0%);
+  }
+}
+
+.pokus1 {
+  height: 100vh;
+  width: 100vw;
+  background-color: #aaa;
+  box-sizing: border-box;
+  border: 1px solid #aaa;
+  position: relative;
+
+  .gumb {
+    margin: 100px;
+    width: 150px;
+    height: 70px;
+    background-color: yellow;
+    @include centriraj;
+  }
+
+  .plast {
+    height: 100vh;
+    width: 100vw;
+    z-index: 5;
+    background-color: rgba(0,0,0,0.3);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .modal {
+      height: 400px;
+      width: 600px;
+      background-color: #aaa;
+      position: relative;
+      @include centriraj;
+
+      .mapa {
+        height: 98%;
+        width: 98%;
+      }
+
+      .krizic {
+        height: 30px;
+        width: 30px;
+        /*background-color: black;*/
+        position: absolute;
+        right: 25px;
+        top: 25px;
+        transform: rotate(45deg);
+        z-index: 10;
+        
+        .el1 {
+          position: absolute;
+          height: 22%;
+          width: 100%;
+          top: 39%;
+          left: 0%;
+          background-color: black;
+        }
+    
+        .el2 {
+          position: absolute;
+          height: 100%;
+          width: 22%;
+          top: 0%;
+          left: 39%;
+          background-color: black;
+        }
+    
+        &:hover {
+          cursor: pointer;
+        }
+    
+        &:hover .el1, &:hover .el2 {
+          background-color: #555;
+        }
+      }
+    }
+  }
+}
+
+.taksi {
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: $podloga;
+  border: 1px solid $podloga;
+  position: relative;
+  display: none; /*privremeno ucitavanja stranice*/
+
+  .main {
+    min-height: 100vh;
+    width: 100%;
+    background-color: $podloga;
+
+    .el {
+      margin: 50px auto 0px auto;
+      width: 80%;
+      height: 100%;
+      background-color: $podloga;
+
+      .lista1 {
+        width: 50%;
+        margin: 0px auto 0px auto;
+        font-size: 16px;
+      }
+
+      @media screen and (max-width: 700px) {
+        & .lista1 {
+            width: 80%;
+        }
+      }
+
+      @media screen and (max-width: 550px) {
+        & {
+          width: 95%;
+        }
+        & .lista1 {
+            font-size: 14px;
+        }
+      }
+
+      .el-h2 {
+        text-align: center;
+      }
+
+      .el-h3 {
+        text-align: center;
+      }
+    }
+
+    .gumb {
+      width: 200px;
+      height: 70px;
+      border: 2px solid #777;
+      border-radius: 5px;
+      color: white;
+      background-color: #777;
+      font-size: 20px;
+      @include centriraj;
+      user-select: none;
+      transition: all 0.7s;
+      margin: 30px auto 80px auto;
+
+      @media screen and (max-width: 670px) {
+        & {
+          width: 150px;
+          height: 55px;
+        }
+      }
+
+      &:hover {
+        color: black;
+        background-color: #aaa;
+        border: 2px solid #aaa;
+        cursor: pointer;
+      }
+
+      .gumb-p {
+        text-decoration: none;
+      }
+    }
+  }
+
+  .slika {
+    width: 100%;
+    height: 600px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    transition: opacity 2s;
+
+    @media screen and (min-width: 1100px) {
+      & {
+          height: 750px;
+      }
+    }
+
+    @media screen and (max-width: 650px) {
+      & {
+          height: 450px;
+      }
+    }
+  }
+
+  #slika1 {
+    background-image: url("../public/slike/uber.png");
+    opacity: 1;
+  }
+
+  #slika2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url("../public/slike/bolt.png");
+    opacity: 0;
+  }
+
+}
