@@ -5,6 +5,7 @@ import { Navbar } from "./navbar.js";
 import { Footer } from "./footer.js";
 import { Obracun } from "./obracun.js";
 import { NotFound, Loading } from "./notFound.js";
+import { Testimonial } from "./testimonial.js";
 import {
   BrowserRouter as Router,
   Routes,
@@ -16,6 +17,8 @@ import { MdCastForEducation } from "react-icons/md";
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
 import { GiDutchBike } from "react-icons/gi";
 import { PiShootingStarThin } from "react-icons/pi";
+
+import { BsPerson } from "react-icons/bs";
 
 
 window.onload = function() {
@@ -178,6 +181,7 @@ function Glavna() {
             </Link>
           </div>
         </div>
+        <Testimonial/>
       </main>
       <Footer/>
     </div>
@@ -530,6 +534,14 @@ function Taksi() {
   )
 }
 
+function Person() {
+  return (
+    <div className="person">
+      <BsPerson className="ikona"/>
+    </div>
+  )
+}
+
 
 function Application() {
   const [lang, setLang] = React.useState("hr");
@@ -561,7 +573,7 @@ function Application() {
           <Route path={ADRESA+"/onama"} element={<ONama/>} />
           <Route path={ADRESA+"/taksi"} element={<Taksi/>} />
           <Route path={ADRESA+"/obracun"} element={<Obracun/>} />
-          <Route path={ADRESA+"/loading"} element={<Loading/>} />
+          <Route path={ADRESA+"/person"} element={<Person/>} />
           <Route path="*" element={<NotFound/>} />
         </Routes>
       </Router>

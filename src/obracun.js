@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from 'react-dom/client';
 import "./obracun.scss";
+import { ADRESA } from "./index.js";
 
 const data = [["24.6.","18:25","19:14","skupljao sam uzorke web stranica i promatrao koje elemente mogu posuditi. Skidao sam graficke elemente sa vaseg facebook profila"],
               ["","22:29","23:45","shutterstock - 5 slika za 50eu (330 milijuna slika). u ovom sessinu sam istrazivao slike u public domainu. odabrao sam par slika ubera, bolta, logo od glova, wolt itd. Editirao sam slike takoder"], 
@@ -16,7 +17,8 @@ const data = [["24.6.","18:25","19:14","skupljao sam uzorke web stranica i proma
               ["","1:14","1:29","dovrsio postavljanje na internet"],["28.6.","10:52","11:30","uvodim dvojezicni mehanizam"],["","11:41","12:07","dovrsio uvodenje dvojezicnog mehanizma"],["","12:48","14:01","prevodim site dio po dio na engleski"],
               ["","17:34","18:36","dovrsavam prijevod, sitniji popravci, postavljam novu verziju sitea na internet"],
               ["30.6.","8:56","10:05","bug sa hover natpisom za touch screen uredaje je rijesen. uveo 404 stranicu za promaseni link. radim na loading page"],
-              ["","10:33","11:25","dovrsio i ugradio loading page. Postavio novu verziju sitea na internet"]]
+              ["","10:33","11:25","dovrsio i ugradio loading page. Postavio novu verziju sitea na internet"],
+              ["2.7.","11:14","12:55","krenuo sam sa testimonialom"],["","13:17","14:19","dovrsio testimonial"],["","0:41","1:40","stavljam poruke i slike u testimonial, stavljam novu verziju na internet, pisem Vedranu plan oko domene lipa-vita.hr"]]
 
 export function Obracun() {
   const [rez, setRez] = React.useState([]);
@@ -106,6 +108,17 @@ export function Obracun() {
       <a className="link" href="https://cor-fortium.hr/" target="_blank">cor fortium</a><br/>
       <a className="link" href="https://metamatemm.com/" target="_blank">meta mate</a><br/>
       <a className="link" href="https://nnkd.hr/posao-dostavljaca/" target="_blank">N & N Karlic</a>
+      <div className="buffer"></div>
+      <h2>Novi server i registracija vase stare domene www.lipa-vita.hr</h2>
+      <p className="p-el1">Bok Vedran.</p>
+      <p className="p-el1">Za ovu drugu fazu razvoja baze podataka potreban ce mi biti server. Pronasao sam najjeftiniju varijantu, A2 hosting, najjeftiniji VPS (virtual private server), za godinu dana kosta 42eu (sa PDV-om). Taj nam najvise odgovara, Postoji shared hosting opcija, ali ona je dobra jedino za staticni site, ne I za baze podataka I back-end aplikacije. Ovog od 42eu I ja imam, taj je najjeftiniji na trzistu, I mislim da ce biti za vas adekvatan – moguce ga je kasnije I prosiriti sa skupljim I jacim, ali to sumnjam da ce biti potrebno. </p>
+      <p className="e-el1">Pogledao sam na carnetu kakvo je stanje sa vasom domenom, www.lipa-vita.hr. Cini se da je jos registrirana na vasu firmu. Za pravne osobe je prva domena besplatna (zato je jos uvijek online, nije ju trebalo placati I zato je nitko nije iskljucio). Pokrenuo sam proceduru na Carnetu registracije te domene na novi email, lipa.vita@proton.de, a taj email sam jucer otvorio. Plan je da jednom kada je registriramo, imat cu potpunu kontrolu nad njom (preko emaila), I onda sam mislio je usmjeriti na nasu novu internet stranicu / web aplikaciju. Jednom kada zavrsim sa poslom, predat cu email tebi, I ti ces biti u posjedu njegove sifre (I sifre novog servera).</p>
+      <p className="e-el1">OK, da bismo domenu registrirali na novi e-mail, trebate isprintati sljedeci obrazac I lupiti zig firme I potpis ovlastene osobe. </p>
+      <a href={ADRESA+"/slike/Obrazac.pdf"}>obrazac</a>
+      <p className="e-el1">Zatim ponovo dokument treba skenirati I meni poslati na mail  lipa-vita@proton.de, te cu ja poslati taj obrazac u carnet e-mailom. Ako se razumijes u digitalno potpisivanje, I to se moze, pise na obrascu. Takoder postoji opcija da slikate dokument umjesto skeniranja, I posaljite mi whatsupom (sto bolja fotografija).</p>
+      <p className="e-el1">Ah da, jucer sam dodao I testimonial na glavnu stranicu. Imate na njemu dvije izmisljene recenzije I moju sa slikom. Recenzije se trivijalno mogu dodavati I oduzimati. Takoder bi pozeljne bile slike recezenata, ali nisu nuzne.</p>
+      <p className="e-el1">E da, I mogli bi mi platiti za ovu fazu posla – ukupno 189.4eu + 50eu (slike copyright) + 42eu server = 281.4eu (mozete I na bankovni racun, kao placu ili tjednu isplatu uber/bolt).</p>
+      <p className="e-el1">OK onda, posaljite mi obrazac.<br/>Pozdrav</p>
       <div className="buffer"></div>
     </div>
   )

@@ -988,3 +988,16 @@ body {
   }
 
 }
+
+.person {
+  height: 400px;
+  width: 400px;
+  background-color: #1172d4;
+  background-color: #65a7eb;
+  @include centriraj;
+
+  .ikona {
+    height: 70%;
+    width: 70%;
+  }
+}

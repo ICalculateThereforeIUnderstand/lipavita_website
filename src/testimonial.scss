@@ -1,0 +1,163 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+  
+@mixin centriraj {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+$podloga: #dcf9fa;
+
+
+.cont {
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+  border: 1px solid $podloga;
+  background-color: $podloga;
+}
+
+.testimonial {
+  height: 300px;
+  width: 500px;
+  max-width: 90vw;
+  /*background-color: yellow;*/
+  margin: 100px auto 60px auto;
+  position: relative;
+  overflow: hidden;
+
+  .trenutni {
+    //opacity: 1;
+    transform: translate(0%, 0%);
+    z-index: 2;
+  }
+
+  .sljedeci {
+    //opacity: 0;
+    transform: translate(100%, 0%);
+    z-index: 1;
+  }
+
+  .prethodni {
+    //opacity: 0;
+    transform: translate(-100%, 0%);
+    z-index: 1;
+  }
+
+  .el {
+    /*background-color: blue;*/
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    //transition: opacity 0.5s 0.8s, transform 1s;
+    transition: transform 1s;
+    
+
+    .gornja-ploca {
+      height: 50%;
+      width: 100%;
+      /*background-color: green;*/
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      .slika {
+        height: 100px;
+        width: 100px;
+        position: absolute;
+        top: 25px;
+        left: 30px;
+        border-radius: 50%;
+
+        @media screen and (max-width: 450px) {
+            & {
+                height: 85px;
+                width: 85px;
+                left: 15px;
+            }
+        }
+      }
+
+      .podaci {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 65%;
+        @include centriraj;
+        /*background-color: pink;*/
+        flex-direction: column;
+
+        .ime {
+          font-size: 24px;
+          font-weight: 600;
+          margin: 0;
+        }
+
+        .posao {
+          font-size: 18px;
+          margin: 0;
+          color: #444;
+        }
+      }
+    }
+
+    .donja-ploca {
+        height: 50%;
+        width: 100%;
+        /*background-color: #a6f589;*/
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        @include centriraj;
+
+        .p-el {
+            margin: 20px 10px 10px 10px;
+            text-align: center;
+        }
+    }
+  }
+
+  .gumb {
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    background-color: rgba(0,0,0,0.0);
+    top: 130px;
+    z-index: 5;
+    transition: background-color 0.7s;
+    @include centriraj;
+
+    &:hover {
+      cursor: pointer;
+      background-color: rgba(0,0,0,0.3);
+
+      .ikona {
+        color: #0625bf;
+      }
+    }
+  }
+
+  .lijevi {
+    left: 0;
+  }
+
+  .desni {
+    right: 0;
+  }
+
+  .ikona {
+    height: 65%;
+    width: 65%;
+    /*color: red;*/
+  }
+}
