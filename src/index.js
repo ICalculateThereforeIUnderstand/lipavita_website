@@ -35,8 +35,8 @@ window.onload = function() {
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-//export const ADRESA = "";
-export const ADRESA = "/lipavita";
+export const ADRESA = "";
+//export const ADRESA = "/lipavita";
 
 export const Kontekst = React.createContext();
 
