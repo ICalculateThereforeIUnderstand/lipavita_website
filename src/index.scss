@@ -175,6 +175,29 @@ body {
 
           .gumb-p {
             text-decoration: none;
+            font-size: 20px;
+          }
+
+          @media screen and (max-width: 630px) {
+            & {
+                height: 60px;
+                width: 150px;
+
+                .gumb-p {
+                  font-size: 16px;
+                }
+            }
+          }
+
+          @media screen and (max-width: 500px) {
+            & {
+                height: 54px;
+                width: 130px;
+
+                .gumb-p {
+                  font-size: 14px;
+                }
+            }
           }
         }
 
@@ -987,17 +1010,4 @@ body {
     opacity: 0;
   }
 
-}
-
-.person {
-  height: 400px;
-  width: 400px;
-  background-color: #1172d4;
-  background-color: #65a7eb;
-  @include centriraj;
-
-  .ikona {
-    height: 70%;
-    width: 70%;
-  }
 }
