@@ -87,7 +87,7 @@ body {
   background-color: grey;
   border: 1px solid grey;
   position: relative;
-  display: none; /*privremeno ucitavanja stranice*/
+  display: block; /*privremeno ucitavanja stranice*/
 
   .main {
     background-color: $podloga;
@@ -336,6 +336,47 @@ body {
     }
   }
 
+  .slika-img {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    transition: opacity 2s;
+    display: block;
+
+    @media screen and (min-width: 1100px) {
+      & {
+          height: 750px;
+      }
+    }
+
+    @media screen and (max-width: 650px) {
+      & {
+          height: 450px;
+      }
+    }
+  }
+
+  #slika1-img {
+    //content: url("../public/slike/uber.png");
+    opacity: 1;
+  }
+
+  #slika2-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    //content: url("../public/slike/bolt.png");
+    opacity: 0;
+  }
+
+  #slika3-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    //content: url("../public/slike/dostavljaci.jpg");
+    opacity: 0;
+  }
+
   .slika {
     width: 100%;
     height: 600px;
@@ -431,15 +472,171 @@ body {
   }
 }
 
-
-
 .onama {
   min-height: 100vh;
   width: 100%;
   box-sizing: border-box;
-  background-color: grey;
-  border: 1px solid grey;
+  background-color: $podloga;
+  border: 1px solid $podloga;
   position: relative;
+
+  .holder {
+    position: relative;
+    top: 0;
+    left: 0;
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid $podloga;
+    /*background-color: yellow;*/
+  }
+
+  .slika-img {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    transition: opacity 2s;
+    display: block;
+
+    @media screen and (min-width: 1100px) {
+      & {
+          height: 650px;
+      }
+    }
+
+    @media screen and (max-width: 720px) {
+      & {
+          height: 400px;
+      }
+    }
+
+    @media screen and (max-width: 490px) {
+      & {
+          height: 340px;
+      }
+    }
+
+    @media screen and (max-width: 400px) {
+      & {
+          height: 280px;
+      }
+    }
+  }
+
+  .main {
+    /*background-color: pink;*/
+
+    .el3 {
+      width: 100%;
+      min-height: 350px;
+      /*background-color: yellow;*/
+
+      .vozila {
+        width: 100%;
+        min-height: 150px;
+        display: flex;
+        justify-content: center;
+        align-content: flex-start;
+        flex-wrap: wrap;
+        /*background-color: green;*/
+      }
+    }
+
+    .buffer {
+      height: 50px;
+      width: 100%;
+    }
+
+    .el2 {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-content: flex-start;
+      width: 100%;
+      min-height: 300px;
+      /*background-color: blue;*/
+    }
+
+    .el1 {
+      width: 100%;
+      min-height: 300px;
+      /*background-color: red;*/
+      @include centriraj;
+
+      @media screen and (max-width: 850px) {
+        & {
+            flex-direction: column;
+        }
+      }
+
+      .lijeva {
+        width: 45vw;
+        background-color: $podloga;
+
+        .naslov {
+          margin-top: 20px;
+        }
+        .p-el {
+          padding-right: 10px;
+        }
+      }
+
+      .desna {
+        width: 45vw;
+        min-height: 200px;
+        /*background-color: green;*/
+
+        .slika1 {
+          max-height: 100%;
+          max-width: 100%;
+          border-radius: 20% 12% 12% 20%;
+        }
+      }
+
+      @media screen and (max-width: 850px) {
+        .lijeva, .desna {
+            width: 90vw;
+        }
+      }
+    }
+
+    .partneri-naslov {
+      height: 28px;
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .partneri {
+      margin-top: 20px;
+      width: 100%;
+      height: 150px;
+      background-color: white;
+      @include centriraj;
+
+      @media screen and (max-width: 950px) {
+        & {
+            height: 100px;
+        }
+      }
+
+      @media screen and (max-width: 650px) {
+        & {
+            height: 75px;
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        & {
+            height: 50px;
+        }
+      }
+
+      .logo-img {
+        height: 100%;
+      }
+    }
+  }
 }
 
 .stop-scrolling {
@@ -454,7 +651,7 @@ body {
   background-color: $podloga;
   border: 1px solid $podloga;
   position: relative;
-  display: none; /*privremeno ucitavanja stranice*/
+  /*display: none;*/ /*privremeno ucitavanja stranice*/
 
   .holder {
     position: relative;
@@ -462,6 +659,57 @@ body {
     left: 0;
     min-height: 100vh;
     width: 100%;
+  }
+
+  .natpis {
+    height: 600px;
+    width: 65%;
+    position: absolute;
+    top: -20vh;
+    left: 17.5%;
+    /*background-color: rgba(246, 247, 178, 0.4);*/
+    @include centriraj;
+    flex-direction: column;
+    transition: top 2s;
+
+    @media screen and (min-width: 1100px) {
+      & {
+          height: 750px;
+      }
+    }
+
+    @media screen and (max-width: 650px) {
+      & {
+          height: 450px;
+          width: 90%;
+          left: 5%;
+      }
+    }
+
+    .pomak {
+      height: 0;
+      width: 0;
+      @media screen and (max-width: 650px) {
+        & {
+            height: 100px;
+            width: 100%;            
+        }
+      }
+    }
+
+    .natpis-el {
+      font-size: 45px;
+      font-weight: 600;
+      font-family: sans-serif;
+      color: #111;
+      text-align: center;
+      @media screen and (max-width: 650px) {
+        & {
+            font-size: 40px;         
+        }
+      }
+
+    }
   }
 
   .plast {
@@ -733,6 +981,26 @@ body {
     }
   }
 
+  .slika-img {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    transition: opacity 2s;
+    display: block;
+
+    @media screen and (min-width: 1100px) {
+      & {
+          height: 750px;
+      }
+    }
+
+    @media screen and (max-width: 650px) {
+      & {
+          height: 450px;
+      }
+    }
+  }
+
   .slika {
     width: 100%;
     height: 600px;
@@ -900,7 +1168,34 @@ body {
   background-color: $podloga;
   border: 1px solid $podloga;
   position: relative;
-  display: none; /*privremeno ucitavanja stranice*/
+  /*display: none;*/ /*privremeno ucitavanja stranice*/
+
+  .slika-img {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    transition: opacity 2s;
+    display: block;
+    
+
+    @media screen and (min-width: 1100px) {
+      & {
+          height: 750px;
+      }
+    }
+
+    @media screen and (max-width: 650px) {
+      & {
+          height: 450px;
+      }
+    } 
+  }
+
+  #druga-slika {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 
   .main {
     min-height: 100vh;
@@ -1009,5 +1304,5 @@ body {
     background-image: url("../public/slike/bolt.png");
     opacity: 0;
   }
-
 }
+

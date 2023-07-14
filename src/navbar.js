@@ -79,7 +79,7 @@ export function Navbar({current=0}) {
   
     return (
       <nav ref={r} className="navbar">
-        <img src="lipaVitaLogo.jpg" className="logo" alt="logo slika" />
+        <img src="lipaVitaLogo4.png" className="logo" alt="logo slika" />
         <div className="zastavice">
          <img ref={r5a} src="slike/croatia.png" className="zastava croatia" alt="hrvatska zastava za hrvatski"
             onClick={()=>{setLang("hr")}} onMouseEnter={()=>{hover("hr")}} onMouseLeave={()=>{unhover("hr")}}/>

@@ -6,6 +6,8 @@ import { Footer } from "./footer.js";
 import { Obracun } from "./obracun.js";
 import { NotFound, Loading } from "./notFound.js";
 import { Testimonial } from "./testimonial.js";
+import { Kartica2 } from "./kartica.js";
+import { ModalSlika } from "./modalSlika.js";
 import {
   BrowserRouter as Router,
   Routes,
@@ -16,9 +18,10 @@ import {
 import { MdCastForEducation } from "react-icons/md";
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
 import { GiDutchBike } from "react-icons/gi";
-import { PiShootingStarThin } from "react-icons/pi";
 
-import { BsPerson } from "react-icons/bs";
+import { BsPersonAdd, BsPersonLock, BsBicycle } from "react-icons/bs";
+import { AiOutlineCar } from "react-icons/ai";
+import { MdElectricBike } from "react-icons/md";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -31,7 +34,10 @@ export const Kontekst = React.createContext();
 function Glavna() {
 
   const [brSlika, setBrSlika] = React.useState(0);
-  const { loadSw, lang } = React.useContext(Kontekst);
+  const { lang } = React.useContext(Kontekst);
+
+  const [loadSw, setLoadSw] = React.useState(false);
+  const [brUcitanih, setBrUcitanih] = React.useState(0);
 
   const r = React.useRef();
   const r1 = React.useRef();
@@ -40,6 +46,17 @@ function Glavna() {
   const r4 = React.useRef();
 
   const p = React.useRef();
+
+  function loadedPicFun() {
+    setBrUcitanih((prev)=>{return prev+1});
+  }
+
+  React.useEffect(()=>{
+    if (brUcitanih === 3) {
+      setLoadSw(true);
+    }
+    
+  },[brUcitanih]);
 
   React.useEffect(()=>{
     r.current = setInterval(()=>{setBrSlika((prev)=>{return (prev+1)%3})}, 5000);
@@ -52,7 +69,7 @@ function Glavna() {
     if (loadSw) {
       p.current.style.display = "block";
     } else {
-      p.current.style.display = "true";
+      p.current.style.display = "block";
     }
   }, [loadSw]);
 
@@ -74,9 +91,15 @@ function Glavna() {
     <Loading sw={!loadSw}/>
     <div ref={p} className="glavna">
       <Navbar current={1}/>
+      {false ? <>
       <div ref={r1} id="slika1" className="slika"></div>
       <div ref={r2} id="slika2" className="slika"></div>
       <div ref={r3} id="slika3" className="slika"></div>
+      </> : <>
+      <img ref={r1} onLoad={loadedPicFun} src="slike/uber.png" id="slika1-img" className="slika-img"/>
+      <img ref={r2} onLoad={loadedPicFun} src="slike/bolt.png" id="slika2-img" className="slika-img"/>
+      <img ref={r3} onLoad={loadedPicFun} src="slike/dostavljaci.jpg" id="slika3-img" className="slika-img"/>
+      </>}
       <div ref={r4} className="natpis">
         <div className="pomak"></div>
         <p className="natpis-el">{lang === "hr" ? "Zaposljavamo u mnogim gradovima Hrvatske" : "We are employing accross many cities in Croatia"}</p>
@@ -85,11 +108,11 @@ function Glavna() {
       <main className="main">
         <h2 className="naslov">{lang === "hr" ? "Nasi partneri" : "Our partners"}</h2>
         <div className="partneri">
-          <img className="logo-img" alt="Uber logo" src="slike/uberLogo.png"/>
-          <img className="logo-img" alt="Bolt logo" src="slike/boltLogo.png"/>
           <img className="logo-img" alt="Wolt logo" src="slike/wolt.png"/>
           <img className="logo-img" alt="Glovo logo" src="slike/glovo.png"/>
           <img className="logo-img" alt="Bolt food logo" src="slike/boltFood.png"/>
+          <img className="logo-img" alt="Uber logo" src="slike/uberLogo.png"/>
+          <img className="logo-img" alt="Bolt logo" src="slike/boltLogo.png"/>
         </div>
         <h2 className="naslov1">{lang === "hr" ? "Zelite li raditi kao dostavljac?" : "You want to work as a delivery man?"}</h2>
         <div className="el1">
@@ -218,18 +241,27 @@ function Kontakt() {
   const [message, setMessage] = React.useState("");
   const [swModal, setSwModal] = React.useState(false);
   const [pomak, setPomak] = React.useState(0);
-  const { loadSw, lang } = React.useContext(Kontekst);
+  const { lang } = React.useContext(Kontekst);
+  const [loadSw, setLoadSw] = React.useState(false);
+  const [brUcitanih, setBrUcitanih] = React.useState(0);
 
   const r = React.useRef();
-  const r1 = React.useRef();
+  const r4 = React.useRef();
+  
+  function loadedPicFun() {
+    setBrUcitanih((prev)=>{return prev+1});
+  }
 
   React.useEffect(()=>{
-    if (loadSw) {
-      r1.current.style.display = "block";
-    } else {
-      r1.current.style.display = "none";
+    if (brUcitanih === 1) {
+      setLoadSw(true);
     }
-  }, [loadSw]);
+    
+  },[brUcitanih]);
+
+  React.useEffect(()=>{
+    r4.current.style.top = "0";
+  }, []);
 
   React.useEffect(()=>{
     if (swModal) {
@@ -295,11 +327,17 @@ function Kontakt() {
   return (
     <>
     <Loading sw={!loadSw}/>
-    <div ref={r1} className="kontakt">
+    <div className="kontakt">
       <div ref={r} className="holder">
       <Navbar current={3}/>
       <Modal swModal={swModal} setSwModal={(sw)=>{setSwModal(sw)}}/>
-      <div className="slika"></div>
+      {false ? <div className="slika"></div> :
+           <img onLoad={loadedPicFun} src="slike/contact.jpg" className="slika-img"/>
+      }
+      <div ref={r4} className="natpis">
+        <div className="pomak"></div>
+        <p className="natpis-el">{lang === "hr" ? "Kontakt stranica" : "Contact Page"}</p>
+      </div>
       <main className="tijelo">
         <aside className="lijeva">
           <div className="element">
@@ -365,18 +403,145 @@ function Kontakt() {
   )
 }
 
-function ONama() {
+
+function Kartica1({tipIkone=1, broj=100, tekst="neki tekst..."}) {
   return (
-    <div className="onama">
-      <Navbar current={2}/>
-      <p>O Nama page</p>
-      <Footer/>
+    <div className="kartica-brojka">
+      <div className="el1">
+        {tipIkone === 1 ? <BsPersonAdd className="ikona"/> : null}
+        {tipIkone === 2 ? <BsPersonLock className="ikona"/> : null}
+        {tipIkone === 3 ? <AiOutlineCar className="ikona"/> : null}
+        {tipIkone === 4 ? <BsBicycle className="ikona"/> : null}
+        {tipIkone === 5 ? <MdElectricBike className="ikona"/> : null}
+      </div>
+      <div className="el2">
+        <p className="boldano">{broj}+</p>  
+        <p className="tekst">{tekst}</p>
+      </div>
     </div>
   )
 }
 
+function ONama() {
+  const [loadSw, setLoadSw] = React.useState(false);
+  const [brUcitanih, setBrUcitanih] = React.useState(0);
+  const [swModal, setSwModal] = React.useState(false);
+  const [pomak, setPomak] = React.useState(0);
+  const { lang } = React.useContext(Kontekst);
+
+  const r = React.useRef();
+
+  function loadedPicFun() {
+    setBrUcitanih((prev)=>{return prev+1});
+  }
+
+  React.useEffect(()=>{
+    if (brUcitanih === 7) {
+      setLoadSw(true);
+    }
+    
+  },[brUcitanih]);
+
+  /*sljedeci react.useEffect blokira scroll kada se modal otvori, zadaca div-a klase holder je da
+    se mjenja iz position fixed u relative i obrnuto, te se pozicionira ovisno o trenutnom scrollu*/
+  React.useEffect(()=>{  
+    if (swModal) {
+      
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      setPomak(scrollTop);
+
+      let element = r.current;
+      let cssObj = window.getComputedStyle(element, null);
+      let svojstvo = cssObj.getPropertyValue("top");
+
+      let svojstvo1 = cssObj.getPropertyValue("height");
+
+      console.log("modal je otvoren");
+      console.log(svojstvo);
+      console.log(svojstvo1);
+
+      r.current.style.position = "fixed";
+      r.current.style.top = -1*scrollTop + "px";
+    } else {      
+      let element = r.current;
+      let cssObj = window.getComputedStyle(element, null);
+      let svojstvo = cssObj.getPropertyValue("height");
+      
+      r.current.style.top = "0px";
+      r.current.style.position = "relative";
+      window.scrollTo(0, pomak);
+
+      console.log("modal je zatvoren");
+      console.log(svojstvo);
+      
+    }
+  }, [swModal]);
+
+  return (
+    <>
+    <Loading sw={!loadSw}/>
+    <div className="onama">
+     <div ref={r} className="holder">
+      <Navbar current={2}/>
+      <img onLoad={loadedPicFun} src="slike/aboutUs.png" className="slika-img"/>
+      <main className="main">
+        <div className="el1">
+          <div className="lijeva">
+            <h2 className="naslov">{lang === "hr" ? "Tko smo mi?" : "Who are we?"}</h2>
+            <p className="p-el">{lang === "hr" ? "Mi smo najstarija firma za dostave u Hrvatskoj. Poslujemo kontinuirano od 2018. godine. Bili smo prvi partner Glovu i Woltu. Naša misija je Vama omogućiti savršene uvjete za rad u dostavama i taksiju. Kod nas ćete uvijek imati redovite tjedne isplate, vrlo brzo rješavanje bilo kakvog problema oko registracija i papirologije, te osiguravamo radna vozila i opremu. Kroz našu firmu je do sada prošlo 4000+ radnika, trenutno imamo zaposleno 500+ ljudi, 100+ vozila u taksi floti, 100+ bicikala, 40+ električnih bicikala" : "We are the oldest food delivery company in Croatia. We have been operating continuously since 2018. We were the first partner of Glovo and Wolt. Our mission is to provide you with perfect conditions for work in deliveries and taxi driving. With us, you will always have regular weekly payments, very quick resolution of any problem with registration and paperwork, and we provide work vehicles and equipment. 4000+ workers have passed through our company so far, we currently have 500+ people employed, 100+ vehicles in the taxi fleet, 100+ bicycles, 40+ electric bicycles."}</p>
+          </div>
+          <div className="desna">
+            <img alt="'why choose us' picture" onLoad={loadedPicFun} src="slike/whyChooseUs.png" className="slika1"/>
+          </div>
+        </div>
+        <h3 className="partneri-naslov">{lang === "hr" ? "Naši partneri:" : "Our partners:"}</h3>
+        <div className="partneri">
+          <img onLoad={loadedPicFun} className="logo-img" alt="Wolt logo" src="slike/wolt.png"/>
+          <img onLoad={loadedPicFun} className="logo-img" alt="Glovo logo" src="slike/glovo.png"/>
+          <img onLoad={loadedPicFun} className="logo-img" alt="Bolt food logo" src="slike/boltFood.png"/>
+          <img onLoad={loadedPicFun} className="logo-img" alt="Uber logo" src="slike/uberLogo.png"/>
+          <img onLoad={loadedPicFun} className="logo-img" alt="Bolt logo" src="slike/boltLogo.png"/>
+        </div>
+
+        <h3 className="partneri-naslov">{lang === "hr" ? "Naše brojke" : "Our numbers"}</h3>
+
+        <div className="el2">
+          <Kartica2 broj={4000} tekst={lang === "hr" ? "do sada zaposlenih" : "cumulatively employed"}/>
+          <Kartica2 tipIkone={2} broj={500} tekst={lang === "hr" ? "trenutno zaposlenih" : "currently employed"}/>
+          <Kartica2 tipIkone={3} broj={100} tekst={lang === "hr" ? "vozila u floti" : "vehicles in fleet"}/>
+          <Kartica2 tipIkone={4} broj={100} tekst={lang === "hr" ? "bicikala" : "bicycles"}/>
+          <Kartica2 tipIkone={5} broj={100} tekst={lang === "hr" ? "elektricnih bicikala" : "electric bicycles"}/>
+        </div> 
+
+        <div className="el3">
+          <h3 className="partneri-naslov">{lang === "hr" ? "Neka od vozila koja možete dobiti kod nas:" : "Some of the vehicles you can get from us:"}</h3>
+          <div className="vozila">
+            <ModalSlika path="slike/vozila/vw_up_2019_free.jpg" model="VW UP 2019" setSwModal={setSwModal}/>
+            <ModalSlika path="slike/vozila/skoda_rapid_spaceback_2019_free.jpg" model="Škoda Rapid Spaceback 2019" setSwModal={setSwModal}/>
+            <ModalSlika path="slike/vozila/mg_zs_2023_free.jpg" model="MG ZS 2023" setSwModal={setSwModal}/>
+            <ModalSlika path="slike/vozila/dacia_sandero_2022_free.jpg" model="Dacia Sandero 2022" setSwModal={setSwModal}/>
+            <ModalSlika path="slike/vozila/dacia_logan_2019_free.jpg" model="Dacia Logan 2019" setSwModal={setSwModal}/>
+            <ModalSlika path="slike/vozila/citroen_celysee_2019_free.jpg" model="Citroen C-Elysee 2019" setSwModal={setSwModal}/>
+            <ModalSlika path="slike/vozila/scooter_peogeot_free.jpg" model={lang === "hr" ? "Skuter Peugeot novi" : "new Peugeot scooter"} setSwModal={setSwModal}/>
+            <ModalSlika path="slike/vozila/scooter_yamaha_free.JPG" model={lang === "hr" ? "Skuter Yamaha nova" : "new Yamaha scooter"} setSwModal={setSwModal}/>
+            <ModalSlika path="slike/vozila/kross_bicycle_free.jpg" model={lang === "hr" ? "Kross bicikl" : "Kross bicycle"} setSwModal={setSwModal}/>
+            <ModalSlika path="slike/vozila/ado_bike_a20_free.webp" model="ADO A20 e-bike" setSwModal={setSwModal}/>
+          </div>  
+        </div>  
+        <div className="buffer"></div>
+      </main>
+
+     
+
+      <Footer/>
+     </div> 
+    </div>
+    </>
+  )
+}
+
 function RotirajuciNatpisi() {
-  const [elementi, setElementi] = React.useState(["Zagreb", "Split", "Dubrovnik"]);
+  const [elementi, setElementi] = React.useState(["Zagreb", "Split", "Rijeka", "Osijek", "Zadar", "Varaždin", "Karlovac", "Pula", "Dubrovnik", "Rovinj", "Poreč", "Koprivnica", "Križevci", "Sisak", "Virovitica"]);
   const [br, setBr] = React.useState(0);
 
   const r = React.useRef();
@@ -440,7 +605,10 @@ function Modal({swModal=false, setSwModal=()=>{return false}}) {
 function Taksi() {
 
   const [brSlika, setBrSlika] = React.useState(0);
-  const { loadSw, lang } = React.useContext(Kontekst);
+  const { lang } = React.useContext(Kontekst);
+
+  const [loadSw, setLoadSw] = React.useState(false);
+  const [brUcitanih, setBrUcitanih] = React.useState(0);
 
   const r = React.useRef();
   const r1 = React.useRef();
@@ -448,19 +616,22 @@ function Taksi() {
 
   const p = React.useRef();
 
+  function loadedPicFun() {
+    setBrUcitanih((prev)=>{return prev+1});
+  }
+
+  React.useEffect(()=>{
+    if (brUcitanih === 2) {
+      setLoadSw(true);
+    }
+    
+  },[brUcitanih]);
+
   React.useEffect(()=>{
     r.current = setInterval(()=>{setBrSlika((prev)=>{return (prev+1)%2})}, 5000);
 
     return ()=>{clearInterval(r.current)};
   }, []);
-
-  React.useEffect(()=>{
-    if (loadSw) {
-      p.current.style.display = "block";
-    } else {
-      p.current.style.display = "none";
-    }
-  }, [loadSw]);
 
   React.useEffect(()=>{
     if (brSlika === 0) {
@@ -474,11 +645,16 @@ function Taksi() {
 
   return (
     <>
-    <Loading sw={!loadSw}/> 
-    <div ref={p} className="taksi">
+    <Loading sw={false}/> 
+    <div className="taksi">
       <Navbar current={-1}/>
-      <div ref={r1} id="slika1" className="slika"></div>
-      <div ref={r2} id="slika2" className="slika"></div>
+      {false ? <>
+        <div ref={r1} id="slika1" className="slika"></div>
+        <div ref={r2} id="slika2" className="slika"></div> </> : <>
+        <img ref={r1} onLoad={loadedPicFun} src="slike/uber.png" className="slika-img"/>
+        <img ref={r2} onLoad={loadedPicFun} src="slike/bolt.png" id="druga-slika" className="slika-img"/>    
+
+        </>}
       <main className="main">
         <div className="el">
           <h2 className="el-h2">{lang === "hr" ? "Kako poceti taksirati na Uberu i/ili Boltu" : "How to start driving for Uber and/or Bolt?"}</h2>
@@ -526,6 +702,8 @@ function Taksi() {
 function Application() {
   const [lang, setLang] = React.useState("hr");
   const [loadSw, setLoadSw] = React.useState(false);
+  const [brUcitanih, setBrUcitanih] = React.useState(0);
+  
 
   React.useEffect(()=>{
     loadFun();
@@ -533,7 +711,7 @@ function Application() {
 
   function loadFun() {
     console.log("Cijela stranica je potpuno ucitana... " + Math.random());
-    setLoadSw(true);
+    //setLoadSw(true);
 
     // helper kod za dizajn stranice
     document.addEventListener("keydown", (e) => {pritisakGumba(e)});
@@ -546,12 +724,24 @@ function Application() {
     }
   }
 
+  function loadedPicFun() {
+    setBrUcitanih((prev)=>{return prev+1});
+  }
+
+  React.useEffect(()=>{
+    if (brUcitanih === 3) {
+      setLoadSw(true);
+    }
+    console.log("NOVI broj ucitanih je " + brUcitanih);
+
+  },[brUcitanih]);
+
   React.useEffect(()=>{
     console.log("Jezik je postavljen na " + lang);
   }, [lang]);
 
   return (
-    <Kontekst.Provider value={{loadSw, lang, setLang}}>
+    <Kontekst.Provider value={{loadSw, loadedPicFun, lang, setLang}}>
       <Router>
         <Routes>
           <Route path={ADRESA+"/"} element={<Glavna />} />

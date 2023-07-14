@@ -119,7 +119,8 @@ export function Testimonial() {
     }
   
     return (
-      <div className="testimonial"  onMouseEnter={()=>{clearInterval(r1.current)}} onMouseLeave={()=>{r1.current = setInterval(skrolaj, intervalTime)}}>
+      <>
+      <div className="testimonial hover-device-block"  onMouseEnter={()=>{clearInterval(r1.current)}} onMouseLeave={()=>{r1.current = setInterval(skrolaj, intervalTime)}}>
         <div className="gumb lijevi" onClick={()=>{if (sw) {setBr((prev)=>{return (prev+brSlika+1)%brSlika}); stopScroll()}}}>
           <FcPrevious className="ikona"></FcPrevious>
         </div>
@@ -132,5 +133,19 @@ export function Testimonial() {
           if ((index+1)%brSlika === br) kod = -1; 
           return <Element poz={kod} key={index} slika={el[0]} ime={el[1]} zanimanje={el[2]} tekst={el[3]}/>})}
       </div>    
+      <div className="testimonial nehover-device-block" >
+        <div className="gumb lijevi" onClick={()=>{if (sw) {setBr((prev)=>{return (prev+brSlika+1)%brSlika}); stopScroll()}}}>
+          <FcPrevious className="ikona"></FcPrevious>
+        </div>
+        <div className="gumb desni" onClick={()=>{if (sw) {setBr((prev)=>{return (prev+brSlika-1)%brSlika}); stopScroll()}}}>
+          <FcNext className="ikona"></FcNext>
+        </div>
+        {pod.map((el, index)=>{
+          let kod = 1;
+          if (index === br)  kod = 0;
+          if ((index+1)%brSlika === br) kod = -1; 
+          return <Element poz={kod} key={index} slika={el[0]} ime={el[1]} zanimanje={el[2]} tekst={el[3]}/>})}
+      </div> 
+      </>
     )
   }

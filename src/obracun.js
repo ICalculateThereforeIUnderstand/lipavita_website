@@ -18,7 +18,34 @@ const data = [["24.6.","18:25","19:14","skupljao sam uzorke web stranica i proma
               ["","17:34","18:36","dovrsavam prijevod, sitniji popravci, postavljam novu verziju sitea na internet"],
               ["30.6.","8:56","10:05","bug sa hover natpisom za touch screen uredaje je rijesen. uveo 404 stranicu za promaseni link. radim na loading page"],
               ["","10:33","11:25","dovrsio i ugradio loading page. Postavio novu verziju sitea na internet"],
-              ["2.7.","11:14","12:55","krenuo sam sa testimonialom"],["","13:17","14:19","dovrsio testimonial"],["","0:41","1:40","stavljam poruke i slike u testimonial, stavljam novu verziju na internet, pisem Vedranu plan oko domene lipa-vita.hr"]]
+              ["2.7.","11:14","12:55","krenuo sam sa testimonialom"],["","13:17","14:19","dovrsio testimonial"],["","0:41","1:40","stavljam poruke i slike u testimonial, stavljam novu verziju na internet, pisem Vedranu plan oko domene lipa-vita.hr"],
+              ["3.7.","9:11","10:23","istrazivao cijene servera, trenutno je favorit hostinger za 75eu godisnje"],["","9:30","10:50",""],
+              ["","10:56","11:25","rijeseni bugovi"],["","17:54","18:43","KRENUO SA PROJEKTOM WEB APLIKACIJE. Instalirao pocetnu stranicu, uveo typescript"],
+              ["","18:59","20:04","preveo sam pomocne elemente u typescript iz dosadasnjeg projekta. Krenuo sam sa postavljanjem backend ruby on rails servera."],["","23:40","0:51",""],
+              ["5.7.","22:51","0:33",""],["","0:51","2:01","ugradio sam signin stranicu zajedno sa flashom"],["7.7.","14:53","15:45","sredio sam flash, uveo sam loading i signin stranicu"],
+              ["","15:54","17:06",""],["","17:15","17:58",""],["","18:06","18:43","zavrsio sam sa signout procedurom"],
+              ["8.7.","17:54","19:14","sada krecem sa implementacijom signup forme"],["","19:28","20:33",""],["","21:59","0:04",""],
+              ["","0:14","0:35","zavrsio sam sa verifikacijom mobitela. Sve je u najboljem redu"],
+              ["9.7.","10:17","11:04","krenuo sam sa radom na administratovoj stranici, glavnoj. Na njoj ce biti pretrazivac za vozace i lista vozaca"],["","11:30","12:11",""],["","12:26","13:10",""],
+              ["","18:46","20:36","refaktorirao sam bazu podataka, uveo sam mehanizme koji upravljaju phone verifikacijom, active status. Sada cijeli mehanizam radi za vozaca"],
+              ["10.7.","10:45","11:55","sredio sam login i logout za admina. Sada aplikacija pravi razliku izmedu admina i vozaca na vozackim i admin stranicama."],["","12:19","13:16","odlucio u sign-up proceduri uzeti i dodatnu informaciju o imenu i prezimenu, ne samo o usernameu"],
+              ["","13:27","13:58",""],["","17:06","17:51","ugradujem novi popup prozor sa brisanje i aktivaciju vozaca."],["","18:05","19:20","ugradio sam mehanizam za brisanje i aktivaciju vozaca"],
+              ["","19:44","21:07","dovrsio sam filtriranje vozaca, uceo sam checkbox selekciju"],["","23:43","0:16","ispitujem hostinger, moram im napisati mail o https certifikatima. Pokusat cu i logo ikonu pretvoriti u png grafiku sa prozirnom podlogom"],
+              ["","0:25","1:24","istjerao napokon kak spada bugove iz ucitavanja slika. "],
+              ["11.7.","9:42","10:33","ispunjavam obracunsku tablicu za zadnjih tjedan dana"],
+              ["","12:15","13:37","OK, u ovom sessinu krecemo sa pisanjem input interaktivne tablice. Ideja je imati na jednom mjestu sve podatke o vozacu, i onda klikovima po pojedinim retcima je moguce mjenjati podatke u tablici."],
+              ["","13:48","14:43","sada sredujem mehanizme za klikanje po tablici i onmouse enter i leave "],
+              ["12.7.","18:23","18:50",""],["","18:53","19:15",""],["","19:28","20:00",""],
+              ["","20:06","20:55",""],["","23:47","0:35","dovrsavam interaktivnu tablicu"],
+              ["13.7.","4:16","6:03","proucavao problem crtice u domeni u vezi google search optimizacije proucio sam problem ssl certifikacije na hostingeru. Skenirao i poslao zahtjev za promjenu emaila na domeni lipa-vita.hr"],
+              ["","6:52","7:48","u ovom sessinu cu adresirati primjedbe sa naseg sastanka u uredu.Rijesio sam logo.Krenuo sam sa izradom stranice onama"],
+              ["","8:12","9:03",""],["","11:52","13:04",""],["","13:20","14:11",""],["","18:04","18:33",""],
+              ["","18:38","19:05",""],["","19:26","19:41","dovrsavam onama stranicu. Skinuo sam free slike sa wikimedije. Odlucio sam jos napraviti modal sa vozilima, znaci kada korisnik klikne na sliku auta, otvorit ce se modal preko cijelog ekrana sa slikom auta."],
+              ["","22:21","23:03","u ovom sessinu se odmaram od samog programiranja. Odlucio sam krenuti sa kupovinom servera i njegovom instalacijom."],
+              ["","23:09","0:19","jeee, instalirao sam server, radi"],
+              ["14.7.","7:56","8:53","ok u ovom sessinu sam odlucio zavrsiti onama stranicu. Moram implementirati modal za vozila"],
+              ["","9:33","10:51","potpuno sam dovrsio onama stranicu. Sve je tip-top, jedino zelim onemoguciti scroll kada se otvori modal."],
+              ["","11:18","12:12","onemogucio scroll na otvoreni modal, padajuci naslov u kontakt stranici, sve je tip-top"]]
 
 export function Obracun() {
   const [rez, setRez] = React.useState([]);
@@ -89,8 +116,11 @@ export function Obracun() {
         
       </table>
 
+      <p className="p-el">Ukupno vrijeme za izradu web stranice je stalo na 31:34, za cijenu 189.4eu. Ovaj sljedeci obracun je za cijeli rad do sada, znaci plus web aplikacija. Ukupna velicina tekstualnih fileova je 92.8kB</p>
+
       <p className="p-el">Ukupno vrijeme je {Math.floor(vrijeme)}:{Math.round((vrijeme-Math.floor(vrijeme))*60)}</p>
       <p className="p-el">Dosadasnja cijena projekta {vrijeme*6} eu</p>
+      <p className="p-el">Velicina tekstualnih fileova za web aplikaciju je trenutno 82.7kb za front-end i 15.2kB</p>
 
       <h2>Pitanja i komentari</h2>
       <p className="p-el1">Bok Vedran. Evo pred tobom je kostur web stranice. Trenutno sadrzi dvije stranice, glavnu I kontakt stranicu. Dosta vremena sa ulozio na izgradnju navbara (gornje navigacijske trake), I footbara (skroz donjeg elementa), oni su zajednicki za sve stranice. Morat ces mi odgovoriti na sljedeca pitanja, tako da znam sto treba poboljsati.</p>
@@ -119,6 +149,13 @@ export function Obracun() {
       <p className="e-el1">Ah da, jucer sam dodao I testimonial na glavnu stranicu. Imate na njemu dvije izmisljene recenzije I moju sa slikom. Recenzije se trivijalno mogu dodavati I oduzimati. Takoder bi pozeljne bile slike recezenata, ali nisu nuzne.</p>
       <p className="e-el1">E da, I mogli bi mi platiti za ovu fazu posla – ukupno 189.4eu + 50eu (slike copyright) + 42eu server = 281.4eu (mozete I na bankovni racun, kao placu ili tjednu isplatu uber/bolt).</p>
       <p className="e-el1">OK onda, posaljite mi obrazac.<br/>Pozdrav</p>
+      <h2>Izvjestaj o obavljenim radovima na stranici poslje naseg sastanka 11.7.</h2>
+      <p className="p-el1">Bok Vedran.</p>
+      <p className="p-el1">Evo vrijeme je za izvjestaj sta sam radio zadnja tri dana. Uglavnom mjesao sam poslove, dovrsio sam 'o Nama' stranicu, uklonio sam sve zamjerke sa zadnjeg sastanka, paralelno sam radio i na web aplikaciji i jos sam instalirao novi server. Volim multitaskati zato sto na taj nacin se borim protiv zamora i dosade i moguce je povecati osobnu produktivnost u vidu veceg broja radnih sati odradenih (kombiniras lakse i teze zadace, i na taj nacin vise napravis u jednom danu). Dakle htio bih da obratis pozornost da novu stranicu i na sve tocke koje smo dotakli na sastanku. one su redom sljedece:</p>
+      <p className="p-el1">1.) Pogledaj novi logo na navbaru i reci mi da li si zadovoljan. Ja sam ga sam napravio, da je to radio graficki editor, sigurno bi bilo bolje (ali onda ga moramo platiti). Uklonio sam iz sredista kruga auto (iako se meni vise svidao autic unutra da budem iskren). Reci mi da li je dovoljno dobar.</p>
+      <p className="p-el1">2.) Problem crtice u lipa-vita.hr apsolutno nema veze sa googleom - za to se ne trebas uopce brinuti. Svi strucnjaci kazu da crtica u domeni nema apsolutno nikakvog utjecaja, jedino je kod nje problem za pamcenje ljudima, ili ako se reklamiras na radiju, teze je reci 'lipa crtica vita tocka hr' nego 'lipa vita tocka hr'. U prvom slucaju slusatelj moze biti zbunjen o kojoj se crtici radi (ima minus ali ima i underscore). To je jedini problem, sve drugo je super, imas kratku domenu sto je izvrsno za pamcenje (samo 8 slova). by the way, mozes imati i dvije domene koje usmjeravaju na isti server (znaci i lipavita.hr i lipa-vita.hr). Samo stvar je u tome da pravna osoba ima jednu domenu besplatnu, a druga se placa.</p>
+      <p className="p-el1">3.) Uveo sam novu stranicu 'O nama'. Pogledaj je i javi mi sto mislis o njoj. Uveo sam sve elemente spomenute na prethodnom sastanku. Imas kratki sazetak, brojke o firmi, dolje se nalazi galerija vozila. Uveo sam modal koji se otvara sa vecom slikom vozila kada kliknes na manju pocetnu sliku. Sto se tice slika vozila, sve su besplatne, pronasao sam ih sve sa licencama Creative Commons (uglavno na wikimediji). Jedino nisam pronasao sliku za MS Energy e-bike (nisam mogao naci ni uz placanje na shutterstocku) te za bicikl Spring bike. Ako se zelis pohvaliti sa ovim elektricnim biciklom, najbolje bi bilo da ga slikate i posaljete mi fotku, i onda je to rijeseno.</p>
+      <p className="p-el1">4.) Ukupno sam potrosio nekih 8:10 sati na radu na web-stranici, ostalo je na web aplikaciji. Na dan 14.7. trenutno ulozeno vrijeme je 39:44</p>
       <div className="buffer"></div>
     </div>
   )

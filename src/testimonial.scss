@@ -25,6 +25,28 @@ $podloga: #dcf9fa;
   background-color: $podloga;
 }
 
+@media (hover: none) {
+  .nehover-device-block {
+    display: block;
+    /*background-color: blue;*/
+  }
+
+  .hover-device-block {
+    display: none;
+  }
+}
+
+@media (hover: hover) {
+  .nehover-device-block {
+    display: none;
+  }
+
+  .hover-device-block {
+    display: block;
+    /*background-color: yellow;*/
+  }
+}
+
 .testimonial {
   height: 300px;
   width: 500px;
@@ -137,12 +159,14 @@ $podloga: #dcf9fa;
     transition: background-color 0.7s;
     @include centriraj;
 
-    &:hover {
-      cursor: pointer;
-      background-color: rgba(0,0,0,0.3);
+    @media (hover: hover) {
+      &:hover {
+        cursor: pointer;
+        background-color: rgba(0,0,0,0.3);
 
-      .ikona {
-        color: #0625bf;
+        .ikona {
+          color: #0625bf;
+        }
       }
     }
   }

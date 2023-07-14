@@ -1,0 +1,54 @@
+
+@mixin centriraj {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.kartica-brojka {
+    height: 100px;
+    width: 300px;
+    max-width: 95vw;
+    position: relative;
+    background-color: #ccc;
+    border-radius: 6px;
+    display: block;
+    margin: 0px 20px 30px 20px;
+  
+    .kartica-el1 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 33.333%;
+      /*background-color: yellow;*/
+      @include centriraj;
+  
+      .kartica-ikona {
+        height: 60px;
+        width: 60px;
+        color: #e08114;
+      }
+    }
+  
+    .kartica-el2 {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: 66.666%;
+      /*background-color: blue;*/
+  
+      .kartica-boldano {
+        color: #e08114;
+        font-size: 36px;
+        font-weight: 600;
+        margin: 10px 0px 0px 10px;
+      }
+  
+      .kartica-tekst {
+        font-size: 18px;
+        margin: 15px 0px 0px 10px;
+      }
+    }
+  }
