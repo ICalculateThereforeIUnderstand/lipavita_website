@@ -30,9 +30,11 @@ export function ModalSlika({path="", model="", setSwModal=()=>{}}) {
         <div ref={p} className="plast-auto">
           <div className="modal-auto">
             <img alt={"slika voznog parka -" + model} src={path} className="img1"/>
-            <div className="krizic-auto" onClick={()=>{setSw(false)}}>
-              <div className="el1a"></div>
-              <div className="el2a"></div>
+            <div className="krizic-okvir" onClick={()=>{setSw(false)}}>
+              <div className="krizic-auto">
+                <div className="el1a"></div>
+                <div className="el2a"></div>
+              </div>
             </div>
             <div className="model">
               <p className="natpis">{model}</p>

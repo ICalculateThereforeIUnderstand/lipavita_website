@@ -163,40 +163,55 @@ body {
         object-fit: cover;
       }
 
-      .krizic-auto {
-        height: 30px;
-        width: 30px;
-        /*background-color: white;*/
+      .krizic-okvir {
         position: absolute;
-        right: 25px;
-        top: 25px;
-        transform: rotate(45deg);
+        right: 20px;
+        top: 20px;
+        @include centriraj;
+        height: 24px;
+        width: 24px;
+        background-color: white;
+        border-radius: 50%;
+        transition: background-color 0.4s;
         z-index: 10;
+
+        .krizic-auto {
+          height: 70%;
+          width: 70%;
+          position: relative;
+          /*background-color: white;*/
+          transform: rotate(45deg);
         
-        .el1a {
-          position: absolute;
-          height: 22%;
-          width: 100%;
-          top: 39%;
-          left: 0%;
-          background-color: black;
-        }
+          .el1a {
+            position: absolute;
+            height: 22%;
+            width: 100%;
+            top: 39%;
+            left: 0%;
+            background-color: black;
+            transition: background-color 0.4s;
+          }
     
-        .el2a {
-          position: absolute;
-          height: 100%;
-          width: 22%;
-          top: 0%;
-          left: 39%;
-          background-color: black;
+          .el2a {
+            position: absolute;
+            height: 100%;
+            width: 22%;
+            top: 0%;
+            left: 39%;
+            background-color: black;
+            transition: background-color 0.4s;
+          }
         }
-    
+
         &:hover {
           cursor: pointer;
-        }
-    
-        &:hover .el1, &:hover .el2 {
-          background-color: #555;
+          background-color: #bbb;
+
+          .krizic-auto {
+            .el1a, .el2a {
+              background-color: #222;
+            }
+          }
         }
       }
     }

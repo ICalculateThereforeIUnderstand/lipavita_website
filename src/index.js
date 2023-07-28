@@ -102,11 +102,11 @@ function Glavna() {
       </>}
       <div ref={r4} className="natpis">
         <div className="pomak"></div>
-        <p className="natpis-el">{lang === "hr" ? "Zaposljavamo u mnogim gradovima Hrvatske" : "We are employing accross many cities in Croatia"}</p>
+        <p className="natpis-el">{lang === "hr" ? "Zapošljavamo u mnogim gradovima Hrvatske" : "We are employing accross many cities in Croatia"}</p>
         <RotirajuciNatpisi/>
       </div>
       <main className="main">
-        <h2 className="naslov">{lang === "hr" ? "Nasi partneri" : "Our partners"}</h2>
+        <h2 className="naslov">{lang === "hr" ? "Naši partneri" : "Our partners"}</h2>
         <div className="partneri">
           <img className="logo-img" alt="Wolt logo" src="slike/wolt.png"/>
           <img className="logo-img" alt="Glovo logo" src="slike/glovo.png"/>
@@ -114,20 +114,20 @@ function Glavna() {
           <img className="logo-img" alt="Uber logo" src="slike/uberLogo.png"/>
           <img className="logo-img" alt="Bolt logo" src="slike/boltLogo.png"/>
         </div>
-        <h2 className="naslov1">{lang === "hr" ? "Zelite li raditi kao dostavljac?" : "You want to work as a delivery man?"}</h2>
+        <h2 className="naslov1">{lang === "hr" ? "Želite li raditi kao dostavljač?" : "You want to work as a delivery man?"}</h2>
         <div className="el1">
           <div className="lijeva-ploca">
-            <img className="slika1" alt="slika dostavljaca" src="slike/foodDelivery.png"/>
-            <img className="slika2" alt="slika dostavljaca Glova, Bolta i Wolta na biciklima" src="slike/dostavljaci.jpg"/>
+            <img className="slika1" alt="slika dostavljača" src="slike/foodDelivery.png"/>
+            <img className="slika2" alt="slika dostavljača Glova, Bolta i Wolta na biciklima" src="slike/dostavljaci.jpg"/>
             <div className="oglas-elektricni-bicikli">
-              <p className="oglas-tekst">{lang === "hr" ? "Nudimo najam elektricnih bicikala!" : "We offer electric bicycle rental!"}</p>
+              <p className="oglas-tekst">{lang === "hr" ? "Nudimo najam električnih bicikala!" : "We offer electric bicycle rental!"}</p>
             </div>
           </div>  
           <div className="ploca">
             <Kartica naslov={lang === "hr" ? "uvjeti" : "conditions"} extraHeight={100} tekst={
                <ul className="lista1">
                  <li>{lang === "hr" ? "18+ godina" : "18+ years old"}</li>
-                 <li>{lang === "hr" ? "potvrda o nekaznjavanju (e-gradani servis)" : "criminal record certificate (e-citizen service)"}</li>
+                 <li>{lang === "hr" ? "potvrda o nekažnjavanju (e-građani servis)" : "criminal record certificate (e-citizen service)"}</li>
                </ul> 
             }>
               <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="ikona bi bi-check-circle" viewBox="0 0 16 16">
@@ -135,9 +135,9 @@ function Glavna() {
                 <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
               </svg>
             </Kartica>
-            <Kartica naslov={lang === "hr" ? "tko sve moze" : "who can apply"} extraHeight={180} tekst={
+            <Kartica naslov={lang === "hr" ? "tko sve može" : "who can apply"} extraHeight={180} tekst={
                <ul className="lista1">
-                 <li>{lang === "hr" ? "Nezaposleni - ugovor o radu, 2 sata dnevno ili vise" : "Unemployed - employment contract, 2 hours a day or more"}</li>
+                 <li>{lang === "hr" ? "Nezaposleni - ugovor o radu, 2 sata dnevno ili više" : "Unemployed - employment contract, 2 hours a day or more"}</li>
                  <li>{lang === "hr" ? "Zaposleni - ugovor o dodatnom radu, 2. posao" : "Employed - contract on second job"}</li>
                  <li>{lang === "hr" ? "Umirovljenici" : "Retired people"}</li>
                  <li>{lang === "hr" ? "Studenti - studentski ugovor" : "Students - student contract"}</li>
@@ -158,7 +158,7 @@ function Glavna() {
             </Kartica>
 
             <Kartica naslov={lang === "hr" ? "edukacija" : "education"} extraHeight={150} tekst={
-               <p className="kartica-tekst">{lang === "hr" ? "Edukacija se sastoji od gledanja uvodnih videa u kojima se objasnjava sama aplikacija, izracun zarade, nacin samog rada, itd. Svaka firma ima svoja videa, a od nas cete dobiti link" : "The education consists of watching introductory videos that explain mobile application, the calculation of earnings, the way job is done, etc. Each company has its own videos whose links you will receive from us."}</p> 
+               <p className="kartica-tekst">{lang === "hr" ? "Edukacija se sastoji od gledanja uvodnih videa u kojima se objašnjava sama aplikacija, izračun zarade, način samog rada, itd. Svaka firma ima svoja videa, a od nas ćete dobiti link" : "The education consists of watching introductory videos that explain mobile application, the calculation of earnings, the way job is done, etc. Each company has its own videos whose links you will receive from us."}</p> 
             }>
               <MdCastForEducation className="ikona"/>
             </Kartica>
@@ -170,24 +170,24 @@ function Glavna() {
             </Kartica>
 
             <Kartica naslov={lang === "hr" ? "oprema" : "equipment"} extraHeight={160} tekst={
-               <p className="kartica-tekst">{lang === "hr" ? "U ovom koraku vi zaduzujete radnu opremu. Od nas cete dobiti dostavljacku torbu, vanjsku veliku bateriju za mobitel i eventualno radno vozilo (nudimo elektricne bicikle, skutere i vozila)" : "In this step, you get the work equipment. From us you will receive a delivery bag, a power bank for a mobile phone and possibly a vehicle (we offer electric bicycles, scooters and cars)."}</p> 
+               <p className="kartica-tekst">{lang === "hr" ? "U ovom koraku vi zadužujete radnu opremu. Od nas ćete dobiti dostavljačku torbu, vanjsku veliku bateriju za mobitel i eventualno radno vozilo (nudimo električne bicikle, skutere i vozila)" : "In this step, you get the work equipment. From us you will receive a delivery bag, a power bank for a mobile phone and possibly a vehicle (we offer electric bicycles, scooters and cars)."}</p> 
             }>
               <GiDutchBike className="ikona"/>
             </Kartica>
 
-            <Kartica naslov={lang === "hr" ? "pocinjete sa radom" : "you start working"} extraHeight={140} tekst={
-               <p className="kartica-tekst">{lang === "hr" ? "Napokon, krecete sa radom. Zelimo Vam sve najbolje i da se druzimo dugo vremena. Sretno!" : "Finally, you start working. We wish you all the best and that we stay together for a long time. Good luck!"}</p> 
+            <Kartica naslov={lang === "hr" ? "počinjete sa radom" : "you start working"} extraHeight={140} tekst={
+               <p className="kartica-tekst">{lang === "hr" ? "Napokon, krećete sa radom. Želimo Vam sve najbolje i da se družimo dugo vremena. Sretno!" : "Finally, you start working. We wish you all the best and that we stay together for a long time. Good luck!"}</p> 
             }>
               <GiDutchBike className="ikona"/>
             </Kartica>
           </div>
         </div>
-        <h2 className="naslov1 naslov2">{lang === "hr" ? "Zelite li taksirati na Uberu i/ili Boltu?" : "Do you want to drive taxi on Uber and/or Bolt?"}</h2>
+        <h2 className="naslov1 naslov2">{lang === "hr" ? "Želite li taksirati na Uberu i/ili Boltu?" : "Do you want to drive taxi on Uber and/or Bolt?"}</h2>
         <div className="slika2">
           <div className="plast">
             <Link to={ADRESA+"/taksi"} style={{ textDecoration:'none' }}>
               <div className="gumb">
-                <p className="gumb-p">{lang === "hr" ? "Zelim taksirati" : "I want to drive"}</p>
+                <p className="gumb-p">{lang === "hr" ? "Želim taksirati" : "I want to drive"}</p>
               </div>
             </Link>
           </div>
@@ -510,7 +510,7 @@ function ONama() {
           <Kartica2 tipIkone={2} broj={500} tekst={lang === "hr" ? "trenutno zaposlenih" : "currently employed"}/>
           <Kartica2 tipIkone={3} broj={100} tekst={lang === "hr" ? "vozila u floti" : "vehicles in fleet"}/>
           <Kartica2 tipIkone={4} broj={100} tekst={lang === "hr" ? "bicikala" : "bicycles"}/>
-          <Kartica2 tipIkone={5} broj={100} tekst={lang === "hr" ? "elektricnih bicikala" : "electric bicycles"}/>
+          <Kartica2 tipIkone={5} broj={100} tekst={lang === "hr" ? "električnih bicikala" : "electric bicycles"}/>
         </div> 
 
         <div className="el3">
