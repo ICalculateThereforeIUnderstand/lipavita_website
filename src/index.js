@@ -149,7 +149,7 @@ function Glavna() {
               </svg>
             </Kartica>
             <Kartica naslov={lang === "hr" ? "prijava" : "your application"} tekst={
-               <p className="kartica-tekst">{lang === "hr" ? "Na nasoj " : "On our "}<Link to={ADRESA+"/kontakt"}>{lang === "hr" ? "kontakt" : "contact"}</Link> {lang === "hr" ? "stranici mozete nam poslati poruku, email ili nazvati nas telefonom. Dogovorit cemo termin kada nas mozete posjetiti u uredu radi daljnje procedure. Mozete i nas samoinicijativno posjetiti u uredu svaki radni dan od 9 do 16." : "page, you can send us a message, email or call us by phone. We will arrange an appointment when you can visit us in the office for further procedures. You can also visit us on your own initiative in the office every working day from 9 am to 4 pm."}</p> 
+               <p className="kartica-tekst">{lang === "hr" ? "Na našoj " : "On our "}<Link to={ADRESA+"/kontakt"}>{lang === "hr" ? "kontakt" : "contact"}</Link> {lang === "hr" ? "stranici možete nam poslati poruku, email ili nazvati nas telefonom. Dogovorit ćemo termin kada nas možete posjetiti u uredu radi daljnje procedure. Možete i nas samoinicijativno posjetiti u uredu svaki radni dan od 9 do 16." : "page, you can send us a message, email or call us by phone. We will arrange an appointment when you can visit us in the office for further procedures. You can also visit us on your own initiative in the office every working day from 9 am to 4 pm."}</p> 
             }>
               <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="ikona bi bi-envelope-at" viewBox="0 0 16 16">
                 <path d="M2 2a2 2 0 0 0-2 2v8.01A2 2 0 0 0 2 14h5.5a.5.5 0 0 0 0-1H2a1 1 0 0 1-.966-.741l5.64-3.471L8 9.583l7-4.2V8.5a.5.5 0 0 0 1 0V4a2 2 0 0 0-2-2H2Zm3.708 6.208L1 11.105V5.383l4.708 2.825ZM1 4.217V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v.217l-7 4.2-7-4.2Z"/>
@@ -164,7 +164,7 @@ function Glavna() {
             </Kartica>
 
             <Kartica naslov={lang === "hr" ? "posjet uredu" : "office visit"} tekst={
-               <p className="kartica-tekst">{lang === "hr" ? "Vrijeme je da nas posjetite u nasem uredu. Ponesite sa sobom sljedece dokumente: osobnu iskaznicu, potvrdu o nekaznjavanju (mladu od 6 mjeseci), vozacku dozvolu (ako planirate koristiti vozilo), osiguranje vozila (u slucaju koristenja vlastitog vozila)" : "It's time to visit us in our office. Bring the following documents with you: identity card, criminal record certificate (younger than 6 months), driver's license (if you plan to use a vehicle), vehicle insurance (in case of using your own)"}</p> 
+               <p className="kartica-tekst">{lang === "hr" ? "Vrijeme je da nas posjetite u našem uredu. Ponesite sa sobom sljedeće dokumente: osobnu iskaznicu, potvrdu o nekažnjavanju (mlađu od 6 mjeseci), vozačku dozvolu (ako planirate koristiti vozilo), osiguranje vozila (u slučaju korištenja vlastitog vozila)" : "It's time to visit us in our office. Bring the following documents with you: identity card, criminal record certificate (younger than 6 months), driver's license (if you plan to use a vehicle), vehicle insurance (in case of using your own)"}</p> 
             }>
               <HiOutlineBuildingOffice2 className="ikona"/>
             </Kartica>
