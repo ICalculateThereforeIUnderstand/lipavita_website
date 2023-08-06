@@ -1,0 +1,154 @@
+$crna3: #222;
+$siva1: #777;
+
+
+/* flash styling*/
+
+.flash-container {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 60px;
+    /*z-index: -1;*/
+    pointer-events: none;
+    /*background-color: yellow;*/
+  
+  
+  .alert {
+    /*display: flex;*/  /*saltamo izmedu none i flex*/
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    width: 100%;
+    z-index: 6;
+    position: sticky;
+    top: 0;
+    pointer-events: auto;
+  }
+  
+  .alert-close {
+    /*background-color: yellow;*/
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+  }
+  
+  .alert-close-el1 {
+    background-color: black;
+    height: 100%;
+    width: 100%;
+    border-radius: 100%;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    transform: rotate(45deg);
+  }
+  
+  .alert-close-el1:hover {
+    background-color: #777;
+    cursor: pointer;
+  }
+  
+  .alert-close-el2 {
+    background-color: white;
+    height: 65%;
+    width: 12%;
+    position: absolute;
+    top: 17.5%;
+    left: 44%;
+    /*z-index: 6;*/
+  }
+  
+  .alert-close-el3 {
+    background-color: white;
+    height: 12%;
+    width: 65%;
+    position: absolute;
+    top: 44%;
+    left: 17.5%;
+    /*z-index: 6;*/
+  }
+  
+  .alert > p {
+    margin: 10px 30px 10px 30px;
+  }
+  
+  .alert-success {
+    background-color: rgba(88,255,79,0.5);
+    display: flex;
+  }
+  
+  .alert-danger {
+    background-color: rgba(242, 12, 43,0.5);
+    display: flex;
+  }
+  
+  .alert-invisible {
+    display: none;
+  }
+  
+  }
+
+  /*spinner styling*/
+
+@keyframes pulse {
+  100% {
+    transform: rotate(360deg);  
+  }
+}
+
+.spinner {
+  $boja1: $crna3;
+  $boja2: $siva1;
+
+  /*height: 100px;
+  width: 100px;*/
+  height: 10vw;
+  width: 10vw;
+  background-color: $boja1;
+  overflow: hidden;
+  border-radius: 50%;
+  /*border: -2px solid green;*/
+  position: absolute;
+  /*left: 150px;*/
+  left: 13vw;
+  top: 100px;
+  box-sizing: border;
+
+  @media screen and (max-width: 825px) {
+    & {
+      width: 20vw;
+      height: 20vw;
+      left: 26vw;
+      top: 200px;
+    }
+  }
+
+  animation: pulse 1s 0s linear infinite normal;
+
+  .spinner-el {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: $boja2;
+    /*border: 0px solid green;*/
+    /*position: relative;*/
+    /*clip-path: polygon(0.00003316988341772742% -0.00003316986141310707%, 50% 50%, 99.99996683011658% -0.00003316986141310707)*/
+  }
+
+  .spinner-el1 {
+    height: 80%;
+    width: 80%;
+    background-color: $boja2;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    z-index: 10;
+    border-radius: 50%;
+  }
+}

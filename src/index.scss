@@ -836,12 +836,42 @@ body {
           .naslov {
             font-size: 22px;
             font-weight: 600;
-            
           }
 
           .tekst {
             font-size: 17px;
+          }
+
+          .naslov1 {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 10px 0px 10px 0px;
+          }
+
+          .tekst1 {
+            font-size: 15px;
+            margin: 0px;
+          }
+
+          .upozorenje1 {
+            font-size: 10px;
+          }
+
+          @media screen and (max-width: 480px) {
             
+            .naslov1 {
+              font-size: 13px;
+            }
+            .tekst1 {
+              font-size: 11px;
+            }
+            .upozorenje1 {
+              font-size: 10px;
+            }
+          }
+
+          .upozorenje {
+            font-size: 10px;
           }
 
           .email {
@@ -902,8 +932,8 @@ body {
       .div-forma {
         height: 90%;
         width: 90%;
-        /*background-color: yellow;*/
         display: flex;
+        position: relative;
         flex-direction: column;
         align-items: center;
 
@@ -911,10 +941,56 @@ body {
           /*background-color: red;*/
           width: 80%;
 
+          .file-izbornik {
+            height: 80px;
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+
+            .izbornik {
+              max-height: 70px;
+              width: 150px;
+              font-size: 12px;
+              margin-left: 15px;
+            }
+
+            .naslov-ikona {
+              max-height: 30px;
+              max-width: 30px;
+              margin: 10px 0px 10px 0px;
+
+              &:hover {
+                cursor: pointer;
+              }
+            }
+
+            .forma-button1 {
+              font-size: 14px;
+              width: 80px;
+              height: 30px;
+              @include centriraj;
+              border-radius: 5px;
+              margin-left: 10px;
+              transition: background-color 0.7s;
+  
+              &:hover {
+                background-color: #ccc;
+                cursor: pointer;
+              }
+            }
+          }
+
           .forma-input1 {
-            font-size: 18px;
+            font-size: 16px;
             width: 100%;
             margin-bottom: 10px;
+          }
+
+          @media screen and (max-width: 420px) {
+            .forma-input1 {
+              font-size: 14px;
+            }
           }
 
           .forma-button {
@@ -943,7 +1019,7 @@ body {
 
       .desna {
         width: 80vw;
-        height: 500px;
+        height: 650px;
         margin: 0px auto 0px auto;
 
       }

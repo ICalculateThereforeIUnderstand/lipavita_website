@@ -4,10 +4,12 @@ import './index.scss';
 import { Navbar } from "./navbar.js";
 import { Footer } from "./footer.js";
 import { Obracun } from "./obracun.js";
+import { Flash, Spinner } from "./flash.js";
 import { NotFound, Loading } from "./notFound.js";
 import { Testimonial } from "./testimonial.js";
 import { Kartica2 } from "./kartica.js";
 import { ModalSlika } from "./modalSlika.js";
+import { useFetch1 } from "./useFetch.js";
 import {
   BrowserRouter as Router,
   Routes,
@@ -28,6 +30,10 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 export const ADRESA = "";
 //export const ADRESA = "/lipavita";
+
+//const ADRESA_MAIL_SERVERA = "http://localhost:3000";
+const ADRESA_MAIL_SERVERA = "http://lipavita.eu:8080";
+
 
 export const Kontekst = React.createContext();
 
@@ -239,14 +245,69 @@ function Kontakt() {
   const [email, setEmail] = React.useState("");
   const [phone, setPhone] = React.useState("");
   const [message, setMessage] = React.useState("");
+  const [fileovi, setFileovi] = React.useState([]);
+  const [fileTipovi, setFileTipovi] = React.useState([]);
+  const [fileoviImena, setFileoviImena] = React.useState([]);
+  const [odabraniEraseFil, setOdabraniEraseFil] = React.useState("-");
   const [swModal, setSwModal] = React.useState(false);
   const [pomak, setPomak] = React.useState(0);
   const { lang } = React.useContext(Kontekst);
   const [loadSw, setLoadSw] = React.useState(false);
   const [brUcitanih, setBrUcitanih] = React.useState(0);
+  const [br, setBr] = React.useState(0);
+  const [flashPoruke, setFlashPoruke] = React.useState([]);
+  const [loading1, setLoading1] = React.useState(false);
 
   const r = React.useRef();
   const r4 = React.useRef();
+  const r1 = React.useRef();
+  const r2 = React.useRef();
+
+  const [loading, error, value] = useFetch1(ADRESA_MAIL_SERVERA+"/posalji", 
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        "name": name,
+        "email": email,
+        "message": message,
+        "phone": phone,
+        "fileovi": fileovi,
+        "fileoviImena": fileoviImena,
+        "fileTipovi": fileTipovi
+      }),
+      headers: {
+        'Content-type': 'application/json'
+      }
+  }, [br]);
+
+  React.useEffect(()=>{
+    console.log("novi br je " + br);
+  }, [br])
+
+  React.useEffect(()=>{
+    console.log("loading: " + loading);
+    console.log("error: " + error);
+    console.log("value: ");
+    console.log("br: " + br);
+    console.log(value);
+
+    if (br !== 0 && value !== undefined && typeof value !== "boolean") {
+      if (value.error) {
+        console.log("GRESKA");
+        console.log(value.errorCode);
+        postaviFlashPoruku("Slanje vase poruke je bilo neuspjesno.", "danger", "kontakt");
+      } else if (!loading && !value.error){
+        postaviFlashPoruku("Primili smo vasu poruku.", "success", "kontakt");
+      }
+      setName("");
+      setEmail("");
+      setPhone("");
+      setMessage("");
+      setFileTipovi([]);
+      setFileoviImena([]);
+      setFileovi([]);
+    }
+  }, [loading]);
   
   function loadedPicFun() {
     setBrUcitanih((prev)=>{return prev+1});
@@ -298,32 +359,165 @@ function Kontakt() {
     }
   }, [swModal]);
 
+  React.useEffect(()=>{
+    console.log("nove flash poruke:");
+    console.log(flashPoruke);
+  }, [flashPoruke]);
+
+  function postaviFlashPoruku(poruka, tip, kod) {
+    // poruka: string, tip: "danger" | "success", kod: string | null
+      if (r2.current) clearTimeout(r2.current);
+      r2.current = window.setTimeout(()=>{
+        setFlashPoruke((prev)=>{
+          let msec = (new Date()).getTime();
+          if (prev.length == 0 || prev[0].id !== msec) {
+            prev.unshift({id:msec, poruka:poruka, tip:tip, kod:kod}); 
+          }
+          return [...prev];});
+      }, 100);
+    }
+
   function submitFun(e) {
+    console.log("upravo si submitao... " + Math.random());
     e.preventDefault();
-    console.log(name);
-    console.log(email);
-    console.log(phone);
-    console.log(message);
+    let regex = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/i;
+
+    if (loading1) {
+      postaviFlashPoruku("Pricekajte da se file uploada.", "danger", "kontakt");
+      return;
+    }
+    if (loading) {
+      postaviFlashPoruku("Pricekajte da se zavrsi proces slanja poruke.", "danger", "kontakt");
+      return;
+    }
+    if (name.trim().length < 5) {
+      postaviFlashPoruku("Ime i prezime moraju biti dulji od 4 slova.", "danger", "kontakt");
+      return;
+    } else if (!regex.test(email)) {
+      postaviFlashPoruku("Niste upisali dobar email. Probajte ponovo.", "danger", "kontakt");
+      return;
+    }
+    let len = 0;
+    for (let i = 0; i < phone.length; i++) {
+      if (phone[i] !== " ") len++;
+    }
+    if (len < 6) {
+      postaviFlashPoruku("Niste upisali dobar tel. broj. Mora imati bar 6 brojeva.", "danger", "kontakt");
+      return;
+    }
+    setBr((prev)=>{return prev+1});
   }
+
   function provjeriBroj(str) {
     if (str.length === 0) return true;
-    switch (str.at(-1)) {
-      case "0":
-      case "1":
-      case "2":
-      case "3":
-      case "4":
-      case "5":
-      case "6":
-      case "7":
-      case "8":
-      case "9":
-      case " ":
-        return true;
-      default:
-        return false;
+    for (let i = 0; i < str.length; i++) {
+      let c = str[i];
+      switch (c) {
+        case "0":
+        case "1":
+        case "2":
+        case "3":
+        case "4":
+        case "5":
+        case "6":
+        case "7":
+        case "8":
+        case "9":
+        case " ":
+          break;
+        default:
+          return false;
+      }
+    }
+    return true;
+  }
+
+  function changePic(e) {
+    let fileList = e.target.files;
+    let ime = fileList[0].name;
+    let tip = ime.split(".");
+    tip = tip[tip.length-1];
+
+    if (tip !== "pdf" && tip !== "jpg" && tip !== "jpeg" && tip !== "png") {
+      postaviFlashPoruku("Dopusteni su sljedeci formati: jpg, jpeg, png, pdf.", "danger", "kontakt");
+      return;
+    } else if (fileList[0].size > 2097152) {
+      postaviFlashPoruku("Maksimalna velicina slike je 2MB.", "danger", "kontakt");
+      return;
+    }
+
+    let reader = new FileReader();
+    reader.readAsDataURL(fileList[0]);
+
+    reader.onload = function() {
+      let rez = reader.result;
+
+      console.log("String koji smo odsjekli:");
+      console.log(rez.substring(0,100));
+      if (rez.length > 22 || true) {
+        rez = rez.toString().replace(/^data:(.*,)?/, '');
+
+        //rez = rez.substring(22);  // ovo je hack da uklonimo pocetni suvisni string
+        // bez ovog hacka program ne funkcionira jer reader dodaje taj suvisni
+        // string koji nije kompatibilan sa Base64.decode64 u ruby in railsu
+      } else {
+        rez = null;
+      }
+      setFileovi((prev)=>{return [...prev, rez]});
+      setFileoviImena((prev)=>{return [...prev, ime]});
+      setFileTipovi((prev)=>{return [...prev, tip]});
+    }
+    reader.onloadstart = function() {
+      setLoading1(true);
+      console.log("startali smo loading " + Math.random());
+    }
+    reader.onloadend = function() {
+      setLoading1(false);
+      console.log("zavrsili smo loading " + Math.random());
     }
   }
+
+  function odaberiFun(e) {
+    setOdabraniEraseFil(e.target.value);
+  }
+
+  function obrisiFun(e) {
+    e.stopPropagation();
+    let ime = odabraniEraseFil;
+    console.log("treba obrisati sljedeci elemenet " + ime);
+    let poz = null;
+    for (let i = 0; i < fileoviImena.length; i++) {
+      if (ime === fileoviImena[i]) {
+        poz = i;
+        break;
+      }
+    }
+    if (poz !== null) {
+      let p1 = [...fileoviImena];
+      let p2 = [...fileovi];
+      let p3 = [...fileTipovi];
+      p1.splice(poz, 1);
+      p2.splice(poz, 1);
+      p3.splice(poz, 1)
+      setFileoviImena(p1);
+      setFileovi(p2);
+      setFileTipovi(p3);
+      setOdabraniEraseFil("-");
+    }
+  }
+
+  function unosFile() {
+    if (loading1) {
+      postaviFlashPoruku("Pricekaj da se file uploada.", "danger", "kontakt");
+      return;
+    }
+    if (fileoviImena.length >= 6) {
+      postaviFlashPoruku("Nije dopusteno slanje vide od 6 fileova.", "danger", "kontakt");
+      return;
+    }
+    if (r1.current) r1.current.click();
+  }
+
   return (
     <>
     <Loading sw={!loadSw}/>
@@ -360,7 +554,7 @@ function Kontakt() {
             </div>
             <div className="sadrzaj">
               <p className="naslov">{lang === "hr" ? "Telefon" : "Telephone"}</p>
-              <p className="tekst">012 345 6789</p>
+              <p className="tekst">01 5620 165</p>
             </div>
           </div>
           <div className="element hove" onClick={()=>{setSwModal(true)}}>
@@ -370,18 +564,21 @@ function Kontakt() {
               </svg>
             </div>
             <div className="sadrzaj">
-              <p className="naslov">{lang === "hr" ? "Lokacija" : "Location"}</p>
-              <p className="tekst">Kruge 12, Zagreb</p>
-              <p className="upozorenje">{lang === "hr" ? "Kliknite za prikaz mape" : "Click to see map"}</p>
+              <p className="naslov1">{lang === "hr" ? "Lokacija" : "Location"}</p>
+              <p className="tekst1">Kruge 46A, Zagreb</p>
+              <p className="tekst1">{lang === "hr" ? "Posjetite nas u našem uredu, 9-16, Pon-Pet" : "Visit us at our office,"}</p>
+              <p className="upozorenje1">{lang === "hr" ? "Kliknite za prikaz mape" : "Click to see map"}</p>
             </div>
           </div>
         </aside>
         <section className="desna">
           <p className="forma-naslov">{lang === "hr" ? "Kontaktirajte nas" : "Contact us"}</p>
           <div className="div-forma">
-            
-            
-            <form onSubmit={submitFun} className="forma-el" method="post" id="form-el4" action="http://slobodansavic.com/procesirajEmail/proces_email.php">
+            <div className="flash-container">
+              {flashPoruke.map((el)=>{return <Flash key={el.id} id={el.id} setFlashPoruke={setFlashPoruke} tip={el.tip} poruka={el.poruka} kod1="kontakt" kod2={el.kod} />})}
+            </div>
+            {loading || loading1 ? <Spinner/> : null}
+            <form onSubmit={(e)=>{e.preventDefault()}} className="forma-el" id="form-el4">
               <label for="Name">{lang === "hr" ? "Ime i prezime" : "First and last name"}</label>
               <input onChange={(e)=>{setName(e.target.value)}} value={name} type="text" className="forma-input1" id="Name" name="Name" placeholder={lang === "hr" ? "Unesite ime i prezime" : "Enter first and last name"} required/>
               <label for="Email">Email</label>
@@ -389,8 +586,26 @@ function Kontakt() {
               <label for="Phone">{lang === "hr" ? "Mobitel" : "Mobile phone"}</label>
               <input onChange={(e)=>{if (provjeriBroj(e.target.value)) setPhone(e.target.value)}} value={phone} type="tel" className="forma-input1" id="Phone" name="Phone" placeholder={lang === "hr" ? "Unesite broj mobitela" : "Enter mobile phone"} required/>
               <label for="Message">{lang === "hr" ? "Vasa poruka" : "Your message"}</label>
-              <textarea  onChange={(e)=>{setMessage(e.target.value)}} value={message} id="Message" name="Message" className="forma-input1" rows="8" maxlength="3000" placeholder={lang === "hr" ? "Vaša poruka" : "Your message"} required/>
-              <button type="submit" id="button" className="forma-button">{lang === "hr" ? "Posaljite poruku" : "Send message"}</button>
+              <textarea  onChange={(e)=>{setMessage(e.target.value)}} value={message} id="Message" name="Message" className="forma-input1" rows="10" maxlength="3000" placeholder={lang === "hr" ? "Vaša poruka - radi bržeg postupka molimo Vas da nam pošaljete OIB, IBAN, adresu stanovanja, zatim sken osobne iskaznice (obje strane), vozačke dozvole (obje strane), potvrde o nekažnjavanju i taxi licence (za taksiranje)" : "Your message - for a faster process, please send us your OIB and IBAN numbers, your residential address, scan of your ID (both sides), driver`s licence (both sides), criminal record certificate and taxi-licence (for taxi)"} required/>
+              
+              <div className="file-izbornik">
+                <div className="naslov-ikona">
+                  <svg onClick={unosFile} xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="naslov-ikona-el bi bi-file-earmark-arrow-up" viewBox="0 0 16 16">
+                    <path d="M8.5 11.5a.5.5 0 0 1-1 0V7.707L6.354 8.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 7.707V11.5z"/>
+                    <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+                  </svg>
+                </div>
+                <select className="izbornik" size={5} value={odabraniEraseFil}  
+                   onChange={(e)=>{}} >
+                  {fileoviImena.length === 0 ? <option onClick={odaberiFun} value="-">no files</option> : 
+                    <option onClick={odaberiFun} value="-">bez odabira</option>}
+                  {fileoviImena.map((el, ind)=>{return <option onClick={odaberiFun} value={el} key={el+ind+Math.random()}>{el}</option>})}
+                </select>
+                {odabraniEraseFil !== "-" ? <button onClick={obrisiFun} type="submit" className="forma-button1">{lang === "hr" ? "Obrisi" : "Remove"}</button> : null}
+              </div>
+              
+              <input ref={r1} onChange={changePic} type="file" className="forma-input1" id="Files" name="Files" accept=".jpg, .jpeg, .png, .pdf" style={{display:"none"}}/>
+              <button onClick={submitFun} type="submit" id="button" className="forma-button">{lang === "hr" ? "Posaljite poruku" : "Send message"}</button>
             </form>
             
           </div>
